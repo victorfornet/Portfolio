@@ -5,6 +5,7 @@ import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
 import { NavBar } from "@/components/ui/NavBar";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { CustomCursor } from "@/components/ui/CustomCursor";
+import { CinematicBackground } from "@/components/scene/CinematicBackground";
 
 const sans = Inter_Tight({ subsets: ["latin"], variable: "--font-sans-loaded" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono-loaded" });
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${sans.variable} ${mono.variable} ${pixel.variable}`}>
       <body className="font-sans antialiased">
         <SmoothScrollProvider>
+          <CinematicBackground />
           <NavBar />
           <CustomCursor />
           {children}
