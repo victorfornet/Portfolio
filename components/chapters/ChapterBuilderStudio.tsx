@@ -1,0 +1,37 @@
+import { CHAPTERS, WHAT_I_DO } from "@/content/chapters";
+import { StudioScene } from "@/components/pixel/StudioScene";
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { Reveal } from "@/components/motion/Reveal";
+
+export function ChapterBuilderStudio() {
+  const c = CHAPTERS[3];
+  return (
+    <section id="builder-studio" className="relative isolate py-32">
+      <div className="mx-auto max-w-6xl px-6 md:px-10">
+        <div className="mx-auto mb-12 aspect-[16/7] max-w-4xl">
+          <StudioScene />
+        </div>
+        <div className="mx-auto max-w-3xl text-center">
+          <Reveal>
+            <p className="font-mono text-xs uppercase tracking-wider text-slate-500">{c.label}</p>
+            <h2 className="mt-2 text-3xl font-semibold text-slate-900 md:text-4xl">{c.title}</h2>
+          </Reveal>
+          <div className="mt-6 space-y-4 text-slate-700">
+            {c.body!.map((p, i) => (
+              <Reveal key={i} delay={0.1 * i}>
+                <p>{p}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+        <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {WHAT_I_DO.map((item, i) => (
+            <Reveal key={item.title} delay={0.06 * i}>
+              <ChapterCard title={`${item.icon}  ${item.title}`} body={item.body} />
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
