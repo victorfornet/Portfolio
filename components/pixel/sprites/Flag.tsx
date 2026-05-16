@@ -1,7 +1,8 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 export function Flag({ className }: { className?: string }) {
+  const reduced = useReducedMotion();
   return (
     <svg
       viewBox="0 0 8 12"
@@ -13,7 +14,7 @@ export function Flag({ className }: { className?: string }) {
     >
       <rect x="3" y="0" width="1" height="12" fill="#3a2418" />
       <motion.g
-        animate={{ skewX: [0, 6, 0, -3, 0] }}
+        animate={reduced ? {} : { skewX: [0, 6, 0, -3, 0] }}
         transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
         style={{ transformOrigin: "3px 1px" }}
       >

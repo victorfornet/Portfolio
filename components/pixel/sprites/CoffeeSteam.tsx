@@ -1,7 +1,8 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 export function CoffeeSteam({ className }: { className?: string }) {
+  const reduced = useReducedMotion();
   return (
     <svg
       viewBox="0 0 8 12"
@@ -19,7 +20,7 @@ export function CoffeeSteam({ className }: { className?: string }) {
           width={1}
           height={1}
           fill="#cfd8e3"
-          animate={{ y: [10, 0], opacity: [0.8, 0] }}
+          animate={reduced ? {} : { y: [10, 0], opacity: [0.8, 0] }}
           transition={{
             duration: 2 + i * 0.3,
             repeat: Infinity,

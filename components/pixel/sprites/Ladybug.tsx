@@ -1,14 +1,15 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 export function Ladybug({ className }: { className?: string }) {
+  const reduced = useReducedMotion();
   return (
     <motion.svg
       viewBox="0 0 8 6"
       className={className}
       width={24}
       height={18}
-      animate={{ x: [0, 4, 0] }}
+      animate={reduced ? {} : { x: [0, 4, 0] }}
       transition={{ duration: 1.2, repeat: Infinity, ease: "steps(4)" as unknown as undefined }}
       shapeRendering="crispEdges"
       aria-hidden

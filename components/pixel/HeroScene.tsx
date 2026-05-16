@@ -24,12 +24,9 @@ export function HeroScene() {
       </Parallax>
       <div className="absolute inset-x-0 bottom-[28%] h-24 bg-[linear-gradient(to_top,#7da7d9_0%,#7da7d9_60%,transparent_60%)] mix-blend-multiply opacity-60" />
       <div className="absolute inset-x-0 bottom-0 h-[28%] bg-[linear-gradient(to_top,#3aa84a_0%,#56c067_40%,#7ad07d_100%)]" />
-      <div className="absolute right-[14%] bottom-[22%] flex items-end gap-2">
-        <div
-          className="size-16 rounded-sm bg-slate-700 ring-1 ring-slate-800 pixelated"
-          aria-label="laptop"
-        />
-        <div className="size-8 rounded-sm bg-slate-800 pixelated" aria-label="phone" />
+      <div className="absolute right-[14%] bottom-[22%] flex items-end gap-2" aria-hidden>
+        <div className="size-16 rounded-sm bg-slate-700 ring-1 ring-slate-800 pixelated" />
+        <div className="size-8 rounded-sm bg-slate-800 pixelated" />
         <Ladybug />
       </div>
     </div>

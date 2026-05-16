@@ -69,7 +69,7 @@ export function ProjectCard({ project, className }: { project: Project; classNam
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="self-start font-mono text-xs text-slate-500 hover:text-slate-800"
+        className="self-start rounded font-mono text-xs text-slate-500 hover:text-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
         aria-expanded={open}
       >
         {open ? "Collapse ↑" : "Read more ↓"}

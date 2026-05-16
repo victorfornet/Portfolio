@@ -40,7 +40,7 @@ export function NavBar() {
               <a
                 href={`#${c.id}`}
                 className={cn(
-                  "block rounded-full px-3 py-1.5 text-xs font-medium transition-colors",
+                  "block rounded-full px-3 py-1.5 text-xs font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400",
                   isActive ? "bg-white text-slate-900" : "text-white/80 hover:text-white",
                 )}
               >

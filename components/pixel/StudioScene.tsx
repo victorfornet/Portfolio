@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 const phones = [
   { color: "bg-sky-500", delay: 0 },
@@ -9,6 +9,7 @@ const phones = [
 ];
 
 export function StudioScene() {
+  const reduced = useReducedMotion();
   return (
     <div className="relative h-full w-full overflow-hidden rounded-2xl">
       <div className="absolute inset-0 bg-gradient-to-b from-sky-400 via-sky-300 to-sky-100" />
@@ -19,7 +20,7 @@ export function StudioScene() {
           <motion.div
             key={i}
             className={`size-10 rounded-md ring-2 ring-slate-900 pixelated ${p.color}`}
-            animate={{ y: [0, -10, 0] }}
+            animate={reduced ? {} : { y: [0, -10, 0] }}
             transition={{
               duration: 3,
               repeat: Infinity,
