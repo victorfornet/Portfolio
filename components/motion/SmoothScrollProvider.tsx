@@ -6,7 +6,7 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) return;
-    const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+    const lenis = new Lenis({ duration: 1.1, smoothWheel: true, anchors: true });
     let raf = 0;
     const tick = (t: number) => {
       lenis.raf(t);

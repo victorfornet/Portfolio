@@ -12,6 +12,8 @@ export function CustomCursor() {
   useEffect(() => {
     const fine = window.matchMedia("(pointer: fine)").matches;
     if (!fine) return;
+    // Intentional: enabling rendering after the pointer capability is detected.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setEnabled(true);
     document.documentElement.classList.add("has-custom-cursor");
     const move = (e: MouseEvent) => {

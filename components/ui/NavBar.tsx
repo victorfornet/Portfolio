@@ -30,9 +30,9 @@ export function NavBar() {
       initial={{ y: 0 }}
       animate={{ y: hidden ? -100 : 0 }}
       transition={{ duration: 0.3 }}
-      className="fixed left-1/2 top-4 z-50 -translate-x-1/2"
+      className="fixed left-1/2 top-4 z-50 max-w-[calc(100vw-1rem)] -translate-x-1/2"
     >
-      <ul className="flex items-center gap-1 rounded-full bg-slate-900/80 px-2 py-1.5 ring-1 ring-white/10 backdrop-blur-md">
+      <ul className="flex items-center gap-1 overflow-x-auto rounded-full bg-slate-900/80 px-2 py-1.5 ring-1 ring-white/10 backdrop-blur-md [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {CHAPTERS.map((c) => {
           const isActive = active === c.id;
           return (

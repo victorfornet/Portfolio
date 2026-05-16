@@ -25,6 +25,7 @@ export default async function OpenGraphImage() {
         <div
           style={{
             display: "flex",
+            flexDirection: "column",
             fontSize: 64,
             fontWeight: 600,
             color: "#0c1726",
@@ -32,7 +33,8 @@ export default async function OpenGraphImage() {
             lineHeight: 1.1,
           }}
         >
-          I build consumer apps —{"\n"}from idea to growth.
+          <div style={{ display: "flex" }}>I build consumer apps —</div>
+          <div style={{ display: "flex" }}>from idea to growth.</div>
         </div>
       </div>
     ),

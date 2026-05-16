@@ -11,7 +11,9 @@ if (typeof window !== "undefined" && !("IntersectionObserver" in window)) {
     root: Element | Document | null = null;
     rootMargin = "";
     thresholds: ReadonlyArray<number> = [];
-    constructor(_cb: IntersectionObserverCallback) {}
+    constructor(_cb: IntersectionObserverCallback) {
+      void _cb;
+    }
   }
   (window as unknown as { IntersectionObserver: unknown }).IntersectionObserver = IntersectionObserverMock;
   (globalThis as unknown as { IntersectionObserver: unknown }).IntersectionObserver = IntersectionObserverMock;

@@ -10,7 +10,7 @@ export function Ladybug({ className }: { className?: string }) {
       width={24}
       height={18}
       animate={reduced ? {} : { x: [0, 4, 0] }}
-      transition={{ duration: 1.2, repeat: Infinity, ease: "steps(4)" as unknown as undefined }}
+      transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
       shapeRendering="crispEdges"
       aria-hidden
     >
