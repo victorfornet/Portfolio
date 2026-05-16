@@ -13,10 +13,8 @@ if (typeof window !== "undefined" && !("IntersectionObserver" in window)) {
     thresholds: ReadonlyArray<number> = [];
     constructor(_cb: IntersectionObserverCallback) {}
   }
-  // @ts-expect-error mock
-  window.IntersectionObserver = IntersectionObserverMock;
-  // @ts-expect-error mock
-  global.IntersectionObserver = IntersectionObserverMock;
+  (window as unknown as { IntersectionObserver: unknown }).IntersectionObserver = IntersectionObserverMock;
+  (globalThis as unknown as { IntersectionObserver: unknown }).IntersectionObserver = IntersectionObserverMock;
 }
 
 // Same for ResizeObserver — used by framer-motion in some paths.
@@ -26,8 +24,6 @@ if (typeof window !== "undefined" && !("ResizeObserver" in window)) {
     unobserve = vi.fn();
     disconnect = vi.fn();
   }
-  // @ts-expect-error mock
-  window.ResizeObserver = ResizeObserverMock;
-  // @ts-expect-error mock
-  global.ResizeObserver = ResizeObserverMock;
+  (window as unknown as { ResizeObserver: unknown }).ResizeObserver = ResizeObserverMock;
+  (globalThis as unknown as { ResizeObserver: unknown }).ResizeObserver = ResizeObserverMock;
 }
