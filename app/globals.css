@@ -1,26 +1,35 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Colors — Cofounder-inspired palette */
+  --color-sky-50:  #eaf6ff;
+  --color-sky-200: #bfe4ff;
+  --color-sky-400: #5cb9ff;
+  --color-sky-500: #2ea1ff;
+  --color-sky-700: #1366b0;
+  --color-grass-200: #c6f0bd;
+  --color-grass-400: #6fd05a;
+  --color-grass-600: #2f9d33;
+  --color-dawn-100: #fce8d8;
+  --color-dawn-300: #f4b78a;
+  --color-dusk-700: #2a2440;
+  --color-sunset-400: #ffb064;
+
+  /* Fonts */
+  --font-sans:  "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-mono:  "JetBrains Mono", ui-monospace, monospace;
+  --font-pixel: "Press Start 2P", ui-monospace, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Pixel-rendered images */
+.pixelated { image-rendering: pixelated; image-rendering: crisp-edges; }
+
+/* Custom cursor enabled */
+html.has-custom-cursor, html.has-custom-cursor * { cursor: none !important; }
+
+/* Reduced motion: kill loops + parallax */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+html, body { background: var(--color-sky-50); color: #0c1726; }
