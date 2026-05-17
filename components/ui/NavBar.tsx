@@ -1,9 +1,10 @@
 "use client";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import { useActiveChapter } from "@/lib/use-active-chapter";
 import { CHAPTERS } from "@/content/chapters";
 import { cn } from "@/lib/cn";
+import { getSlotScrollY } from "@/lib/horizontal-track-math";
 
 const NAV_IDS = [
   "hero",
@@ -15,8 +16,19 @@ const NAV_IDS = [
   "contact",
 ];
 
+const HORIZONTAL_IDS = [
+  "foundation",
+  "corporate-lab",
+  "builder-studio",
+  "shipping",
+  "whats-next",
+];
+
 export function NavBar() {
-  const active = useActiveChapter(NAV_IDS);
+  const active = useActiveChapter(NAV_IDS, {
+    horizontalIds: HORIZONTAL_IDS,
+    horizontalSelector: "[data-horizontal-track]",
+  });
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
 
@@ -24,6 +36,41 @@ export function NavBar() {
     const previous = scrollY.getPrevious() ?? 0;
     setHidden(latest > previous && latest > 120);
   });
+
+  function scrollToSlot(slotIndex: number, behavior: ScrollBehavior) {
+    const wrapper = document.querySelector<HTMLElement>(
+      "[data-horizontal-track]",
+    );
+    if (!wrapper) return false;
+    const rect = wrapper.getBoundingClientRect();
+    const wrapperTop = rect.top + window.scrollY;
+    const top = getSlotScrollY({
+      wrapperTop,
+      wrapperHeight: rect.height,
+      viewportHeight: window.innerHeight,
+      slotIndex,
+      slotCount: HORIZONTAL_IDS.length,
+    });
+    window.scrollTo({ top, behavior });
+    return true;
+  }
+
+  function handleClick(e: MouseEvent<HTMLAnchorElement>, id: string) {
+    const slotIndex = HORIZONTAL_IDS.indexOf(id);
+    if (slotIndex === -1) return;
+    if (!document.querySelector("[data-horizontal-track]")) return;
+    e.preventDefault();
+    scrollToSlot(slotIndex, "smooth");
+  }
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const hash = window.location.hash.replace(/^#/, "");
+    if (!hash) return;
+    const slotIndex = HORIZONTAL_IDS.indexOf(hash);
+    if (slotIndex === -1) return;
+    requestAnimationFrame(() => scrollToSlot(slotIndex, "auto"));
+  }, []);
 
   return (
     <motion.nav
@@ -39,6 +86,7 @@ export function NavBar() {
             <li key={c.id}>
               <a
                 href={`#${c.id}`}
+                onClick={(e) => handleClick(e, c.id)}
                 className={cn(
                   "block rounded-full px-3 py-1.5 text-xs font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400",
                   isActive ? "bg-white text-slate-900" : "text-white/80 hover:text-white",
