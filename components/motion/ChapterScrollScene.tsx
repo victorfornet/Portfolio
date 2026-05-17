@@ -1,7 +1,15 @@
 "use client";
-import { useRef, type ReactNode } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useContext, useRef, type ReactNode } from "react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
 import { cn } from "@/lib/cn";
+import { HorizontalTrackContext } from "@/components/motion/HorizontalChapterTrack";
+import { getSlotLocalProgress } from "@/lib/horizontal-track-math";
 
 export function ChapterScrollScene({
   media,
@@ -16,17 +24,31 @@ export function ChapterScrollScene({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
-  const { scrollYProgress } = useScroll({
+  const track = useContext(HorizontalTrackContext);
+
+  const { scrollYProgress: ownProgress } = useScroll({
     target: ref,
     offset: ["start end", "center start"],
   });
-  const opacity = useTransform(scrollYProgress, [0, 0.35], [0, 1]);
+
+  const progress: MotionValue<number> = useTransform(() => {
+    if (!track || track.slotIndex === 0) {
+      return ownProgress.get();
+    }
+    return getSlotLocalProgress(
+      track.trackProgress.get(),
+      track.slotIndex,
+      track.slotCount,
+    );
+  });
+
+  const opacity = useTransform(progress, [0, 0.35], [0, 1]);
   const clipPath = useTransform(
-    scrollYProgress,
+    progress,
     [0, 0.35],
     ["inset(0 100% 0 0)", "inset(0 0% 0 0)"],
   );
-  const y = useTransform(scrollYProgress, [0, 0.5], [-50, 0]);
+  const y = useTransform(progress, [0, 0.5], [-50, 0]);
 
   if (reduced) {
     return (
