@@ -50,7 +50,7 @@ export function ProjectCard({
                 key={s}
                 className="rounded-md bg-white/10 px-2 py-1 font-mono backdrop-blur-sm transition-colors hover:bg-white/20"
               >
-                #{s}
+                {s}
               </span>
             ))}
           </div>
