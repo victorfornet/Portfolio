@@ -20,13 +20,13 @@ export function ChapterScrollScene({
     target: ref,
     offset: ["start end", "center start"],
   });
-  const opacity = useTransform(scrollYProgress, [0, 0.7], [0, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.35], [0, 1]);
   const clipPath = useTransform(
     scrollYProgress,
-    [0, 0.7],
+    [0, 0.35],
     ["inset(0 100% 0 0)", "inset(0 0% 0 0)"],
   );
-  const y = useTransform(scrollYProgress, [0, 1], [-50, 0]);
+  const y = useTransform(scrollYProgress, [0, 0.5], [-50, 0]);
 
   if (reduced) {
     return (
