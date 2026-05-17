@@ -1,6 +1,7 @@
 import { CHAPTERS } from "@/content/chapters";
 import { CTA } from "@/components/ui/CTA";
-import { ContentPanel } from "@/components/ui/ContentPanel";
+import { SceneIllustration } from "@/components/ui/SceneIllustration";
+import { Boxes } from "@/components/ui/Boxes";
 import { Reveal } from "@/components/motion/Reveal";
 
 export function ChapterContact() {
@@ -8,17 +9,28 @@ export function ChapterContact() {
   return (
     <section
       id="contact"
-      className="relative isolate flex min-h-screen items-center justify-center px-6 py-32 md:px-10"
+      className="relative isolate flex min-h-screen items-center overflow-hidden bg-slate-950 px-6 py-32 text-white md:px-10"
     >
-      <div className="mx-auto w-full max-w-4xl">
+      <Boxes />
+
+      <div className="pointer-events-none relative z-20 mx-auto w-full max-w-5xl">
         <Reveal>
-          <ContentPanel className="mx-auto max-w-2xl text-center">
-            <p className="font-mono text-xs uppercase tracking-wider text-slate-700">{c.label}</p>
-            <h2 className="mt-2 text-balance text-4xl font-semibold text-slate-900 md:text-6xl">
+          <SceneIllustration
+            src="/pixel/contact.png"
+            alt="Pixel-art golden-hour scene with a blond character waving toward the horizon."
+            className="mx-auto max-w-3xl"
+          />
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div className="mx-auto mt-10 max-w-2xl text-center">
+            <p className="font-mono text-xs uppercase tracking-wider text-white/60">
+              {c.label}
+            </p>
+            <h2 className="mt-2 text-balance text-4xl font-semibold md:text-6xl">
               {c.title}
             </h2>
-            <p className="mt-6 mx-auto max-w-xl text-slate-700">{c.body![0]}</p>
-            <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <p className="mx-auto mt-6 max-w-xl text-white/80">{c.body![0]}</p>
+            <div className="pointer-events-auto mt-10 flex flex-wrap justify-center gap-3">
               <CTA href="mailto:victor@rocapine.com">✉ Email me</CTA>
               <CTA
                 variant="secondary"
@@ -37,10 +49,10 @@ export function ChapterContact() {
                 ⌨ GitHub
               </CTA>
             </div>
-          </ContentPanel>
+          </div>
         </Reveal>
       </div>
-      <footer className="pointer-events-none absolute bottom-6 inset-x-0 text-center font-mono text-xs text-slate-700/80">
+      <footer className="pointer-events-none absolute inset-x-0 bottom-6 z-20 text-center font-mono text-xs text-white/50">
         Made by Victor Fornet · 2026 · pixel-art with care
       </footer>
     </section>

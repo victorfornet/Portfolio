@@ -1,69 +1,59 @@
 "use client";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { TaskCard } from "@/components/ui/TaskCard";
 import { CTA } from "@/components/ui/CTA";
-import { ContentPanel } from "@/components/ui/ContentPanel";
-import { CHAPTERS, TASK_CARDS_HERO } from "@/content/chapters";
-import { staggerChildren, fadeUp } from "@/lib/motion-presets";
 
 export function Hero() {
-  const c = CHAPTERS[0];
+  const [titleNumber, setTitleNumber] = useState(0);
+  const titles = useMemo(
+    () => ["consumer", "growth", "AI", "mobile", "shipped"],
+    [],
+  );
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setTitleNumber((n) => (n === titles.length - 1 ? 0 : n + 1));
+    }, 2000);
+    return () => clearTimeout(id);
+  }, [titleNumber, titles]);
+
   return (
     <section
       id="hero"
-      className="relative isolate flex min-h-screen items-center px-6 pt-32 pb-24 md:px-10"
+      className="relative isolate flex min-h-screen items-center justify-center px-6 py-32 md:px-10"
     >
-      <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-8 md:grid-cols-[1.2fr_1fr] md:items-center md:gap-12">
-        <ContentPanel className="max-w-2xl">
-          <motion.h1
-            className="text-balance text-4xl font-semibold leading-[1.05] md:text-6xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          >
-            {c.title}
-          </motion.h1>
-          <motion.p
-            className="mt-4 max-w-xl text-base text-slate-700 md:text-lg"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          >
-            {c.body!.join(" ")}
-          </motion.p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <CTA href="#shipping">See what I&apos;m building</CTA>
-            <CTA
-              variant="secondary"
-              href="https://linkedin.com/in/victorfornet"
-              target="_blank"
-              rel="noreferrer"
-            >
-              LinkedIn ↗
-            </CTA>
-            <CTA
-              variant="secondary"
-              href="https://github.com/victorfornet"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub ↗
-            </CTA>
-          </div>
-        </ContentPanel>
+      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-8 rounded-3xl bg-white/55 px-8 py-12 text-center backdrop-blur-md ring-1 ring-black/5 shadow-[0_30px_80px_-30px_rgba(15,40,80,0.45)] md:px-16 md:py-16">
+        <h1 className="w-full text-balance text-5xl font-semibold leading-[1.05] tracking-tight text-slate-900 md:text-7xl">
+          <span className="block">I build</span>
+          <span className="relative flex w-full justify-center overflow-y-hidden md:pb-4 md:pt-1">
+            &nbsp;
+            {titles.map((title, index) => (
+              <motion.span
+                key={index}
+                className="absolute font-semibold text-sky-700"
+                initial={{ opacity: 0, y: -100 }}
+                transition={{ type: "spring", stiffness: 50 }}
+                animate={
+                  titleNumber === index
+                    ? { y: 0, opacity: 1 }
+                    : { y: titleNumber > index ? -150 : 150, opacity: 0 }
+                }
+              >
+                {title}
+              </motion.span>
+            ))}
+          </span>
+          <span className="block">products.</span>
+        </h1>
 
-        <motion.div
-          className="flex flex-col items-end gap-2"
-          variants={staggerChildren}
-          initial="hidden"
-          animate="show"
-        >
-          {TASK_CARDS_HERO.map((t) => (
-            <motion.div key={t.label} variants={fadeUp}>
-              <TaskCard status={t.status} label={t.label} />
-            </motion.div>
-          ))}
-        </motion.div>
+        <p className="max-w-xl text-base text-slate-800 md:text-lg">
+          Product &amp; Growth at Rocapine. Building Vibo on the side. Studying at
+          HEC Paris, learning by shipping.
+        </p>
+
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <CTA href="#shipping">See what I&apos;m building</CTA>
+        </div>
       </div>
     </section>
   );
