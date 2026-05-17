@@ -1,5 +1,12 @@
 "use client";
-import { Children, createContext, useRef, type ReactNode } from "react";
+import {
+  Children,
+  createContext,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import {
   motion,
   useScroll,
@@ -16,10 +23,48 @@ export type HorizontalTrackContextValue = {
 export const HorizontalTrackContext =
   createContext<HorizontalTrackContextValue | null>(null);
 
+function useHorizontalEnabled(): boolean {
+  const [enabled, setEnabled] = useState<boolean | null>(null);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const lg = window.matchMedia("(min-width: 1024px)");
+    const rm = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setEnabled(lg.matches && !rm.matches);
+    update();
+    lg.addEventListener("change", update);
+    rm.addEventListener("change", update);
+    return () => {
+      lg.removeEventListener("change", update);
+      rm.removeEventListener("change", update);
+    };
+  }, []);
+  return enabled ?? false;
+}
+
 export function HorizontalChapterTrack({ children }: { children: ReactNode }) {
-  const wrapperRef = useRef<HTMLDivElement>(null);
   const items = Children.toArray(children);
   const slotCount = items.length;
+  const enabled = useHorizontalEnabled();
+
+  if (!enabled) {
+    return <>{items}</>;
+  }
+
+  return (
+    <HorizontalChapterTrackPinned slotCount={slotCount}>
+      {items}
+    </HorizontalChapterTrackPinned>
+  );
+}
+
+function HorizontalChapterTrackPinned({
+  children,
+  slotCount,
+}: {
+  children: ReactNode[];
+  slotCount: number;
+}) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: wrapperRef,
@@ -45,7 +90,7 @@ export function HorizontalChapterTrack({ children }: { children: ReactNode }) {
           style={{ x: trackX, width: `${slotCount * 100}vw` }}
           className="flex h-full"
         >
-          {items.map((child, i) => (
+          {children.map((child, i) => (
             <HorizontalTrackContext.Provider
               key={i}
               value={{ trackProgress: scrollYProgress, slotIndex: i, slotCount }}
