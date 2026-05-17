@@ -1,6 +1,11 @@
 "use client";
-import { Children, createContext, type ReactNode } from "react";
-import { type MotionValue, useMotionValue } from "framer-motion";
+import { Children, createContext, useRef, type ReactNode } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
 
 export type HorizontalTrackContextValue = {
   trackProgress: MotionValue<number>;
@@ -12,20 +17,44 @@ export const HorizontalTrackContext =
   createContext<HorizontalTrackContextValue | null>(null);
 
 export function HorizontalChapterTrack({ children }: { children: ReactNode }) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const items = Children.toArray(children);
   const slotCount = items.length;
-  const trackProgress = useMotionValue(0);
+
+  const { scrollYProgress } = useScroll({
+    target: wrapperRef,
+    offset: ["start start", "end end"],
+  });
+
+  const trackX = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [`0%`, `-${(slotCount - 1) * 100}vw`],
+  );
 
   return (
-    <div data-horizontal-track data-slot-count={slotCount}>
-      {items.map((child, i) => (
-        <HorizontalTrackContext.Provider
-          key={i}
-          value={{ trackProgress, slotIndex: i, slotCount }}
+    <div
+      ref={wrapperRef}
+      data-horizontal-track
+      data-slot-count={slotCount}
+      style={{ height: `${slotCount * 100}vh` }}
+      className="relative"
+    >
+      <div className="sticky top-0 h-screen overflow-hidden">
+        <motion.div
+          style={{ x: trackX, width: `${slotCount * 100}vw` }}
+          className="flex h-full"
         >
-          {child}
-        </HorizontalTrackContext.Provider>
-      ))}
+          {items.map((child, i) => (
+            <HorizontalTrackContext.Provider
+              key={i}
+              value={{ trackProgress: scrollYProgress, slotIndex: i, slotCount }}
+            >
+              <div className="h-full w-screen shrink-0">{child}</div>
+            </HorizontalTrackContext.Provider>
+          ))}
+        </motion.div>
+      </div>
     </div>
   );
 }
