@@ -2,12 +2,16 @@ export type ChapterId =
   | "hero" | "foundation" | "corporate-lab" | "builder-studio"
   | "shipping" | "whats-next" | "contact";
 
+export type ChapterBullet = { lead: string; rest: string };
+
 export type Chapter = {
   index: number;
   id: ChapterId;
   label: string;
   title: string;
   body?: string[];
+  metricsLine?: string;
+  bullets?: ChapterBullet[];
   navLabel: string;
 };
 
@@ -16,10 +20,9 @@ export const CHAPTERS: Chapter[] = [
     index: 0,
     id: "hero",
     label: "Hero",
-    title: "I build consumer apps — from idea to growth.",
+    title: "I ship consumer products.",
     body: [
-      "Product & Growth at Rocapine. Building Vibo on the side.",
-      "Studying at HEC Paris, learning by shipping.",
+      "Product Manager at Rocapine ($5.6M ARR, 315K MAU). Building Vibo on the side. HEC Paris. Relocating to San Francisco.",
     ],
     navLabel: "Home",
   },
@@ -27,11 +30,11 @@ export const CHAPTERS: Chapter[] = [
     index: 1,
     id: "foundation",
     label: "Chapter I",
-    title: "It started at HEC Paris.",
+    title: "HEC Paris.",
     body: [
-      "I'm doing a gap year built around one question: how do consumer products actually get built, tested, and scaled?",
-      "Not the theory version. The real one — the messy middle between an idea and a product people use every day.",
-      "So I went to find people doing it.",
+      "Master in Management — ranked #1 worldwide (Financial Times 2025). Expected GPA 3.8/4.0.",
+      "Before HEC: French preparatory class (CPGE ECS), ranked top 100 out of 9,000 candidates at the national entrance exam. Exchange semester at Thammasat University (Bangkok).",
+      "Coursework: Strategy, Digital Innovation, Data Analytics, Financial Economics. Currently on a gap year to ship.",
     ],
     navLabel: "Foundation",
   },
@@ -39,12 +42,12 @@ export const CHAPTERS: Chapter[] = [
     index: 2,
     id: "corporate-lab",
     label: "Chapter II",
-    title: "The first stop was consulting.",
+    title: "BearingPoint — Digital transformation.",
     body: [
-      "I joined BearingPoint to work on digital transformation projects for the public sector.",
-      "I sat with people who used software they hated. I watched information systems get deployed at scale. I learned how organizations resist change, and how products actually land in users' hands.",
-      "It was slow. It was real. It taught me to care about the gap between what a product promises and what people actually experience.",
-      "That gap is where I want to spend my career.",
+      "Six months delivering digital transformation workstreams for public-sector clients: a major French public health organization and a top-tier French university.",
+      "Requirements gathering, user journey mapping, and functional rollout of a new information system serving thousands of internal users.",
+      "Co-authored a digital master plan: IT landscape diagnostics, target architecture, initiative prioritization. Presented to executive stakeholders.",
+      "Takeaway: shipping software at scale inside organizations that resist change. Useful muscle before going consumer.",
     ],
     navLabel: "Consulting",
   },
@@ -52,11 +55,29 @@ export const CHAPTERS: Chapter[] = [
     index: 3,
     id: "builder-studio",
     label: "Chapter III",
-    title: "Now I build at Rocapine.",
+    title: "Rocapine — Product Manager, Publishing.",
     body: [
-      "Rocapine is a mobile app publisher. We build, test and scale consumer apps from scratch.",
-      "My job is hands-on: scout promising studios, analyze product opportunities, improve onboarding and monetization, test ad concepts, follow growth metrics, and turn data into product iterations.",
-      "It's the closest I've found to early-stage building with real budgets and real users.",
+      "Mobile app publisher in wellness. We ship low-cost app demos, test distribution, scale what performs. GenAI-powered personalization across mental health, fitness, nutrition, and sleep.",
+      "What I own:",
+    ],
+    metricsLine: "$5.6M annualized revenue · 315K monthly active users · 14 active studios.",
+    bullets: [
+      {
+        lead: "End-to-end lifecycle for 6 consumer iOS apps",
+        rest: " — concept, MVP specs, App Store launch, growth experiments. Cohort analyses on CAC, D1/D7/D30 retention, and LTV to decide what to scale vs. kill.",
+      },
+      {
+        lead: "20+ dev studios onboarded",
+        rest: " under profit-share partnerships. Built and own the full studio acquisition pipeline.",
+      },
+      {
+        lead: "100+ creative and product A/B tests",
+        rest: " run to identify what scales. Portfolio-level dashboards on revenue, retention, and ROAS.",
+      },
+      {
+        lead: "Scouty",
+        rest: " — internal CRM I designed and built. Now used daily by the publishing team. Replaced scattered spreadsheets, scaled partner sourcing throughput ~3x.",
+      },
     ],
     navLabel: "Builder",
   },
@@ -64,9 +85,9 @@ export const CHAPTERS: Chapter[] = [
     index: 4,
     id: "shipping",
     label: "Chapter IV",
-    title: "Things I'm shipping.",
+    title: "Side projects.",
     body: [
-      "Side projects are how I learn the stack. Some are tools I needed at work. Some are bets on where consumer software is going.",
+      "Where I learn the stack outside of work.",
     ],
     navLabel: "Projects",
   },
@@ -74,10 +95,12 @@ export const CHAPTERS: Chapter[] = [
     index: 5,
     id: "whats-next",
     label: "Chapter V",
-    title: "Where I'm going.",
+    title: "What's next.",
     body: [
-      "I want to spend the next decade building consumer products with founders who move fast — AI-powered apps, growth systems, and the messy infrastructure underneath.",
-      "Eventually, I'll start my own. For now, I'm getting the reps in: shipping, breaking things, learning the stack, and finding the people I want to build with.",
+      "Relocating to San Francisco. Looking for two things:",
+      "**Founder collabs** — Early-stage consumer apps, AI-native products, growth systems. I can ship product, run growth experiments, and build internal tools.",
+      "**Pre-seed product roles** — Small teams where I own outcomes, not slides. PM or founding PM seats at consumer or AI startups.",
+      "Long-term: building toward starting my own. Right now, getting the reps in.",
     ],
     navLabel: "What's next",
   },
@@ -85,22 +108,13 @@ export const CHAPTERS: Chapter[] = [
     index: 6,
     id: "contact",
     label: "Chapter VI",
-    title: "Let's build something.",
+    title: "Let's talk.",
     body: [
-      "If you're working on consumer apps, AI products, or anything ambitious — I'd love to talk.",
+      "Building consumer, AI, or anything ambitious? Reach out.",
     ],
     navLabel: "Contact",
   },
 ];
-
-export const WHAT_I_DO = [
-  { icon: "🛠️", title: "Product & Growth", body: "Onboarding, paywalls, retention." },
-  { icon: "📱", title: "Consumer Apps", body: "Mobile-first, B2C, fast iteration." },
-  { icon: "⚡", title: "Growth Experiments", body: "UA, creative testing, funnels." },
-  { icon: "🤖", title: "AI Tools", body: "LLM-powered products and internal tools." },
-  { icon: "🚀", title: "Mobile MVPs", body: "Idea → TestFlight in weeks." },
-  { icon: "🧩", title: "Internal Systems", body: "CRMs, dashboards, scouting tools." },
-] as const;
 
 export const TASK_CARDS_HERO = [
   { status: "Currently building", label: "Vibo" },
@@ -110,10 +124,23 @@ export const TASK_CARDS_HERO = [
 
 export const WHATS_NEXT_CARDS = [
   { status: "Open to", title: "Founder collabs", body: "Building consumer apps and AI tools." },
-  { status: "Curious about", title: "Pre-seed product roles", body: "Where I can ship, not just advise." },
+  { status: "Curious about", title: "Pre-seed product roles", body: "Where I ship, not just advise." },
 ] as const;
 
 export const TIMELINE_CARDS = {
-  foundation: { status: "Active", title: "HEC Paris — Gap year", body: "Focus: startups, product, growth." },
-  corporateLab: { status: "Completed", title: "BearingPoint — Consultant", body: "Digital transformation · Public sector · User needs · IS deployment · Change management." },
+  foundation: {
+    status: "Active",
+    title: "HEC Paris — Master in Management (2023–Present)",
+    body: "Master in Management · CPGE · Thammasat exchange · gap year to ship.",
+  },
+  corporateLab: {
+    status: "Completed",
+    title: "BearingPoint — Consultant Intern (Jul 2025 – Dec 2025, Paris)",
+    body: "Digital transformation · Public sector · User needs · IS deployment · Change management.",
+  },
+  rocapine: {
+    status: "Active",
+    title: "Rocapine — Product Manager, Publishing (Jan 2026 – Present, Paris)",
+    body: "$5.6M ARR · 315K MAU · 14 studios · 6 apps shipped.",
+  },
 } as const;

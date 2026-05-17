@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Victor Fornet — I build consumer apps from idea to growth";
+export const alt = "Victor Fornet — Product Manager shipping consumer apps";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -33,8 +33,8 @@ export default async function OpenGraphImage() {
             lineHeight: 1.1,
           }}
         >
-          <div style={{ display: "flex" }}>I build consumer apps —</div>
-          <div style={{ display: "flex" }}>from idea to growth.</div>
+          <div style={{ display: "flex" }}>Product Manager shipping</div>
+          <div style={{ display: "flex" }}>consumer apps.</div>
         </div>
       </div>
     ),

@@ -2,6 +2,7 @@ import { CHAPTERS, WHATS_NEXT_CARDS } from "@/content/chapters";
 import { ChapterCard } from "@/components/ui/ChapterCard";
 import { SceneIllustration } from "@/components/ui/SceneIllustration";
 import { Reveal } from "@/components/motion/Reveal";
+import { renderRichLine } from "@/lib/richText";
 
 export function ChapterWhatsNext() {
   const c = CHAPTERS[5];
@@ -24,7 +25,7 @@ export function ChapterWhatsNext() {
               <h2 className="mt-2 text-3xl font-semibold text-slate-900 md:text-4xl">{c.title}</h2>
               <div className="mt-6 space-y-4 text-slate-700">
                 {c.body!.map((p, i) => (
-                  <p key={i}>{p}</p>
+                  <p key={i}>{renderRichLine(p)}</p>
                 ))}
               </div>
             </div>

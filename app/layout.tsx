@@ -16,9 +16,9 @@ const pixel = Press_Start_2P({
 });
 
 export const metadata: Metadata = {
-  title: "Victor Fornet — I build consumer apps from idea to growth",
+  title: "Victor Fornet — Product Manager shipping consumer apps",
   description:
-    "Product & Growth at Rocapine. Building Vibo. HEC Paris gap year. Open to founder collabs and pre-seed product roles.",
+    "Product Manager at Rocapine ($5.6M ARR, 315K MAU). Building Vibo. HEC Paris. Relocating to San Francisco. Open to founder collabs and pre-seed product roles.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

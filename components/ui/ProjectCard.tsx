@@ -12,6 +12,7 @@ export function ProjectCard({
   className?: string;
 }) {
   const [open, setOpen] = useState(false);
+  const hasExpandable = Boolean(project.problem || project.approach || project.link);
   return (
     <article
       className={cn(
@@ -89,14 +90,16 @@ export function ProjectCard({
           )}
         </AnimatePresence>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className="self-start rounded font-mono text-xs text-white/50 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400"
-          aria-expanded={open}
-        >
-          {open ? "Collapse ↑" : "Read more ↓"}
-        </button>
+        {hasExpandable && (
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            className="self-start rounded font-mono text-xs text-white/50 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400"
+            aria-expanded={open}
+          >
+            {open ? "Collapse ↑" : "Read more ↓"}
+          </button>
+        )}
       </div>
 
       <div className="pointer-events-none absolute inset-0 -z-10 rounded-xl bg-gradient-to-br from-transparent via-white/10 to-transparent p-px opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
