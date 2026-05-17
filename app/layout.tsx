@@ -16,7 +16,7 @@ const pixel = Press_Start_2P({
 });
 
 export const metadata: Metadata = {
-  title: "Victor Fornet — Product Manager shipping consumer apps",
+  title: "Victor Fornet · Product Manager shipping consumer apps",
   description:
     "Product Manager at Rocapine ($5.6M ARR, 315K MAU). Building Vibo. HEC Paris. Relocating to San Francisco. Open to founder collabs and pre-seed product roles.",
 };

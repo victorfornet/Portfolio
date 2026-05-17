@@ -20,13 +20,13 @@ export const PROJECTS: Project[] = [
       "The Duolingo for vibe-coding. Mobile app teaching non-technical users to build software with AI tools: daily AI news in short digestible briefs, then interactive exercises to test comprehension and reinforce learning through spaced repetition.",
     stack: ["React Native", "Expo", "TypeScript"],
     approach:
-      "Solo build — product, UX, stack (Cursor + Claude Code), GTM, distribution.",
+      "Solo build: product, UX, stack (Cursor + Claude Code), GTM, distribution.",
   },
   {
     id: "scouty",
     name: "Scouty",
     status: "Internal tool",
     summary:
-      "Custom CRM built from scratch for Rocapine's publishing team. Replaced scattered spreadsheets with a single source of truth for every studio interaction. Used daily by the team — scaled partner sourcing throughput ~3x.",
+      "Custom CRM built from scratch for Rocapine's publishing team. Replaced scattered spreadsheets with a single source of truth for every studio interaction. Used daily by the team, scaled partner sourcing throughput ~3x.",
   },
 ];
