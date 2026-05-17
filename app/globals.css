@@ -32,4 +32,6 @@ html.has-custom-cursor, html.has-custom-cursor * { cursor: none !important; }
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
 }
 
-html, body { background: var(--color-sky-50); color: #0c1726; }
+/* Sky color is a fallback while the pixel scene loads. */
+html { background: var(--color-sky-50); color: #0c1726; }
+body { background: transparent; }
