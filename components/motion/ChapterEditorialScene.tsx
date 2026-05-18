@@ -16,12 +16,14 @@ export function ChapterEditorialScene({
   header,
   accent,
   details,
+  reverse = false,
   className,
 }: {
   media: ReactNode;
   header: ReactNode;
   accent?: ReactNode;
   details: ReactNode;
+  reverse?: boolean;
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -79,13 +81,21 @@ export function ChapterEditorialScene({
     >
       <motion.div
         style={{ opacity: mediaOpacity, clipPath: mediaClip }}
-        className="col-span-12 min-h-[220px] md:col-span-7 md:row-span-1 md:min-h-0"
+        className={cn(
+          "col-span-12 min-h-[220px] md:row-span-1 md:min-h-0",
+          reverse ? "md:col-span-7 md:col-start-6" : "md:col-span-7",
+        )}
       >
         {media}
       </motion.div>
       <motion.div
         style={{ opacity: headerOpacity, y: headerY }}
-        className="col-span-12 flex flex-col justify-center md:col-span-5 md:row-span-1"
+        className={cn(
+          "col-span-12 flex flex-col justify-center md:row-span-1",
+          reverse
+            ? "md:col-span-5 md:col-start-1 md:row-start-1"
+            : "md:col-span-5",
+        )}
       >
         {header}
       </motion.div>
@@ -93,13 +103,23 @@ export function ChapterEditorialScene({
         <>
           <motion.div
             style={{ opacity: accentOpacity, y: accentY }}
-            className="col-span-12 md:col-span-4 md:row-span-1 md:flex md:flex-col md:justify-center"
+            className={cn(
+              "col-span-12 md:row-span-1 md:flex md:flex-col md:justify-center",
+              reverse
+                ? "md:col-span-4 md:col-start-9 md:row-start-2"
+                : "md:col-span-4",
+            )}
           >
             {accent}
           </motion.div>
           <motion.div
             style={{ opacity: detailsOpacity, y: detailsY }}
-            className="col-span-12 md:col-span-8 md:row-span-1 md:flex md:flex-col md:justify-center"
+            className={cn(
+              "col-span-12 md:row-span-1 md:flex md:flex-col md:justify-center",
+              reverse
+                ? "md:col-span-8 md:col-start-1 md:row-start-2"
+                : "md:col-span-8",
+            )}
           >
             {details}
           </motion.div>
