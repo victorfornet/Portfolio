@@ -106,9 +106,9 @@ export const CHAPTERS: Chapter[] = [
     label: "Chapter V",
     title: "What's next.",
     body: [
-      "Still figuring it out, honestly. What I know: the next few years are about building things real people want to use — and being around teams who make that look easy.",
+      "Still figuring it out, honestly. What I know: the next few years are about building things real people want to use, and being around teams who make that look easy.",
       "What pulls me in: consumer products, growth that compounds, software that feels personal. Mostly though, it's about working with people who care a stupid amount about what they're making.",
-      "The fun part isn't picking a label — it's getting in the middle of something ambitious and shipping. I'll figure out the rest.",
+      "The fun part isn't picking a label. It's getting in the middle of something ambitious and shipping. I'll figure out the rest.",
       "Long-term, building my own. Right now, relocating to San Francisco and open to conversations.",
     ],
     navLabel: "What's next",
