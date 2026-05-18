@@ -42,11 +42,34 @@ export function ChapterCorporateLab() {
           />
         }
         details={
-          <div className="space-y-3 text-[15px] text-slate-700">
-            {c.body?.[1] && <p>{c.body[1]}</p>}
-            {c.body?.[2] && <p>{c.body[2]}</p>}
-            {c.body?.[3] && (
-              <p className="font-medium text-slate-900">{c.body[3]}</p>
+          <div>
+            {c.body?.[1] && (
+              <p className="font-mono text-xs uppercase tracking-wider text-slate-500">
+                {c.body[1]}
+              </p>
+            )}
+            {c.bullets && c.bullets.length > 0 && (
+              <ul className="mt-3 space-y-2.5 text-[15px] text-slate-700">
+                {c.bullets.map((b, i) => (
+                  <li key={i} className="flex gap-3">
+                    <span
+                      aria-hidden
+                      className="mt-2 size-1.5 shrink-0 rounded-full bg-slate-400"
+                    />
+                    <span>
+                      <strong className="font-semibold text-slate-900">
+                        {b.lead}
+                      </strong>
+                      {b.rest}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {c.body?.[2] && (
+              <p className="mt-4 text-[15px] font-medium text-slate-900">
+                {c.body[2]}
+              </p>
             )}
           </div>
         }

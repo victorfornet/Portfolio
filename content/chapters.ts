@@ -45,9 +45,18 @@ export const CHAPTERS: Chapter[] = [
     title: "BearingPoint · Digital transformation.",
     body: [
       "Six months delivering digital transformation workstreams for public-sector clients: a major French public health organization and a top-tier French university.",
-      "Requirements gathering, user journey mapping, and functional rollout of a new information system serving thousands of internal users.",
-      "Co-authored a digital master plan: IT landscape diagnostics, target architecture, initiative prioritization. Presented to executive stakeholders.",
+      "What I owned:",
       "Takeaway: shipping software at scale inside organizations that resist change. Useful muscle before going consumer.",
+    ],
+    bullets: [
+      {
+        lead: "Requirements gathering, user journey mapping, and functional rollout",
+        rest: " of a new information system serving thousands of internal users.",
+      },
+      {
+        lead: "Co-authored a digital master plan",
+        rest: ": IT landscape diagnostics, target architecture, initiative prioritization. Presented to executive stakeholders.",
+      },
     ],
     navLabel: "Consulting",
   },
