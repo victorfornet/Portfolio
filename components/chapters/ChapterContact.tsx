@@ -1,5 +1,6 @@
 import { CHAPTERS } from "@/content/chapters";
 import { CTA } from "@/components/ui/CTA";
+import { EmailCopy } from "@/components/ui/EmailCopy";
 import { SceneIllustration } from "@/components/ui/SceneIllustration";
 import { Boxes } from "@/components/ui/Boxes";
 import { Reveal } from "@/components/motion/Reveal";
@@ -31,7 +32,7 @@ export function ChapterContact() {
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-white/80">{c.body![0]}</p>
             <div className="pointer-events-auto mt-10 flex flex-wrap justify-center gap-3">
-              <CTA href="mailto:victor.fornet@hec.edu">✉ Email me</CTA>
+              <EmailCopy email="victor.fornet@hec.edu" />
               <CTA
                 variant="secondary"
                 href="https://linkedin.com/in/victorfornet"
