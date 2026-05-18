@@ -22,7 +22,7 @@ export const CHAPTERS: Chapter[] = [
     label: "Hero",
     title: "I ship consumer products.",
     body: [
-      "Product Manager at Rocapine ($5.6M ARR, 315K MAU). Building Vibo on the side. HEC Paris. Relocating to San Francisco.",
+      "Product Manager at Rocapine. Building Vibo on the side. HEC Paris. Relocating to San Francisco.",
     ],
     navLabel: "Home",
   },
