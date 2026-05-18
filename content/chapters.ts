@@ -106,10 +106,10 @@ export const CHAPTERS: Chapter[] = [
     label: "Chapter V",
     title: "What's next.",
     body: [
-      "Relocating to San Francisco. Looking for two things:",
-      "**Founder collabs**: Early-stage consumer apps, AI-native products, growth systems. I can ship product, run growth experiments, and build internal tools.",
-      "**Pre-seed product roles**: Small teams where I own outcomes, not slides. PM or founding PM seats at consumer or AI startups.",
-      "Long-term: building toward starting my own. Right now, getting the reps in.",
+      "Still figuring it out, honestly. What I know: the next few years are about building things real people want to use — and being around teams who make that look easy.",
+      "What pulls me in: consumer products, growth that compounds, software that feels personal. Mostly though, it's about working with people who care a stupid amount about what they're making.",
+      "The fun part isn't picking a label — it's getting in the middle of something ambitious and shipping. I'll figure out the rest.",
+      "Long-term, building my own. Right now, relocating to San Francisco and open to conversations.",
     ],
     navLabel: "What's next",
   },
@@ -132,8 +132,11 @@ export const TASK_CARDS_HERO = [
 ] as const;
 
 export const WHATS_NEXT_CARDS = [
-  { status: "Open to", title: "Founder collabs", body: "Building consumer apps and AI tools." },
-  { status: "Curious about", title: "Pre-seed product roles", body: "Where I ship, not just advise." },
+  {
+    status: "Open to",
+    title: "Good conversations",
+    body: "Founders, operators, anyone building something they care about. Drop me a line.",
+  },
 ] as const;
 
 export const TIMELINE_CARDS = {
