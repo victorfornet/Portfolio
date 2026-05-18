@@ -16,29 +16,43 @@ export function SceneIllustration({
   alt,
   className,
   priority,
+  fill,
 }: {
   src: string;
   alt: string;
   className?: string;
   priority?: boolean;
+  fill?: boolean;
 }) {
   const d = DIMENSIONS[src] ?? { w: 1600, h: 900 };
   return (
     <div
       className={cn(
         "overflow-hidden rounded-3xl shadow-[0_30px_80px_-30px_rgba(15,40,80,0.45)] ring-1 ring-black/5",
+        fill && "relative h-full w-full",
         className,
       )}
     >
-      <Image
-        src={src}
-        alt={alt}
-        width={d.w}
-        height={d.h}
-        sizes="(min-width: 768px) 50vw, 100vw"
-        priority={priority}
-        className="pixelated h-auto w-full"
-      />
+      {fill ? (
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="(min-width: 768px) 60vw, 100vw"
+          priority={priority}
+          className="pixelated object-cover"
+        />
+      ) : (
+        <Image
+          src={src}
+          alt={alt}
+          width={d.w}
+          height={d.h}
+          sizes="(min-width: 768px) 50vw, 100vw"
+          priority={priority}
+          className="pixelated h-auto w-full"
+        />
+      )}
     </div>
   );
 }
