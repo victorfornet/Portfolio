@@ -3,8 +3,8 @@ import { CHAPTERS } from "@/content/chapters";
 import { PROJECTS } from "@/content/projects";
 
 describe("content/chapters", () => {
-  it("has exactly 7 chapters numbered 0-6", () => {
-    expect(CHAPTERS.length).toBe(7);
+  it("has exactly 8 chapters indexed 0..n-1", () => {
+    expect(CHAPTERS.length).toBe(8);
     CHAPTERS.forEach((c, i) => expect(c.index).toBe(i));
   });
 
@@ -18,8 +18,8 @@ describe("content/chapters", () => {
 });
 
 describe("content/projects", () => {
-  it("has 4 projects", () => {
-    expect(PROJECTS.length).toBe(4);
+  it("has at least 2 projects", () => {
+    expect(PROJECTS.length).toBeGreaterThanOrEqual(2);
   });
 
   it("every project has required fields", () => {

@@ -3,6 +3,8 @@ import { ChapterCard } from "@/components/ui/ChapterCard";
 import { SceneIllustration } from "@/components/ui/SceneIllustration";
 import { ChapterEditorialScene } from "@/components/motion/ChapterEditorialScene";
 
+const LINK = "underline decoration-slate-300 decoration-1 underline-offset-4 transition-colors hover:text-slate-900 hover:decoration-slate-500";
+
 export function ChapterFoundation() {
   const c = CHAPTERS[1];
   const card = TIMELINE_CARDS.foundation;
@@ -28,9 +30,21 @@ export function ChapterFoundation() {
             <h2 className="mt-2 text-3xl font-semibold leading-tight text-slate-900 md:text-4xl">
               {c.title}
             </h2>
-            {c.body?.[0] && (
-              <p className="mt-4 text-slate-700">{c.body[0]}</p>
-            )}
+            <p className="mt-4 text-slate-700">
+              I&apos;m doing my Master in Management at{" "}
+              <a
+                href="https://www.hec.edu/en"
+                target="_blank"
+                rel="noreferrer"
+                className={LINK}
+              >
+                HEC Paris
+              </a>{" "}
+              — ranked #1 worldwide by the Financial Times in 2025. Before that,
+              three years in a French preparatory class (CPGE ECS), top 100 out
+              of 9,000 candidates at the national entrance exam. One semester
+              at Thammasat in Bangkok. Currently on a gap year to ship.
+            </p>
           </div>
         }
         accent={
@@ -42,8 +56,11 @@ export function ChapterFoundation() {
         }
         details={
           <div className="space-y-3 text-[15px] text-slate-700">
-            {c.body?.[1] && <p>{c.body[1]}</p>}
-            {c.body?.[2] && <p>{c.body[2]}</p>}
+            <p>
+              Beyond academics, I&apos;m Vice-President of the Ski Club at HEC
+              — leading a team of 11, managing a €75K annual budget, and
+              organizing trips for 300+ students each year.
+            </p>
           </div>
         }
       />

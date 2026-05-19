@@ -29,9 +29,9 @@ export function ChapterShipping() {
             <h2 className="mt-2 text-3xl font-semibold leading-tight md:text-4xl">
               {c.title}
             </h2>
-            {c.body?.[0] && (
-              <p className="mt-4 text-white/80">{c.body[0]}</p>
-            )}
+            <p className="mt-4 text-white/80">
+              Where I learn the stack outside of work.
+            </p>
           </div>
         }
         details={

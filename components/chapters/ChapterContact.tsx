@@ -30,7 +30,9 @@ export function ChapterContact() {
             <h2 className="mt-2 text-balance text-4xl font-semibold md:text-6xl">
               {c.title}
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-white/80">{c.body![0]}</p>
+            <p className="mx-auto mt-6 max-w-xl text-white/80">
+              Building consumer, AI, or anything ambitious? Reach out.
+            </p>
             <div className="pointer-events-auto mt-10 flex flex-wrap justify-center gap-3">
               <EmailCopy email="victor.fornet@hec.edu" />
               <CTA

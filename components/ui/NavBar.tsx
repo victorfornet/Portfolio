@@ -12,6 +12,7 @@ const NAV_IDS = [
   "corporate-lab",
   "builder-studio",
   "shipping",
+  "about-me",
   "whats-next",
   "contact",
 ];
@@ -21,6 +22,7 @@ const HORIZONTAL_IDS = [
   "corporate-lab",
   "builder-studio",
   "shipping",
+  "about-me",
   "whats-next",
 ];
 

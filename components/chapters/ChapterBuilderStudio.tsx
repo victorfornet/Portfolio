@@ -3,6 +3,22 @@ import { ChapterCard } from "@/components/ui/ChapterCard";
 import { SceneIllustration } from "@/components/ui/SceneIllustration";
 import { ChapterEditorialScene } from "@/components/motion/ChapterEditorialScene";
 
+const LINK = "underline decoration-slate-300 decoration-1 underline-offset-4 transition-colors hover:text-slate-900 hover:decoration-slate-500";
+
+function StoodOut({ lead, children }: { lead: string; children: React.ReactNode }) {
+  return (
+    <div className="border-l-2 border-slate-200 pl-4">
+      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
+        Stood out
+      </p>
+      <p className="mt-1.5 text-[15px] leading-relaxed text-slate-700">
+        <strong className="font-semibold text-slate-900">{lead}</strong>{" "}
+        {children}
+      </p>
+    </div>
+  );
+}
+
 export function ChapterBuilderStudio() {
   const c = CHAPTERS[3];
   const card = TIMELINE_CARDS.rocapine;
@@ -28,55 +44,58 @@ export function ChapterBuilderStudio() {
             <h2 className="mt-2 text-3xl font-semibold leading-tight text-slate-900 md:text-4xl">
               {c.title}
             </h2>
-            {c.body?.[0] && (
-              <p className="mt-4 text-slate-700">{c.body[0]}</p>
-            )}
+            <p className="mt-4 text-slate-700">
+              I&apos;m a Product Manager at{" "}
+              <a
+                href="https://rocapine.com"
+                target="_blank"
+                rel="noreferrer"
+                className={LINK}
+              >
+                Rocapine
+              </a>
+              , a mobile app publisher in wellness. We ship low-cost app demos,
+              test distribution, and scale what performs — with GenAI-powered
+              personalization across mental health, fitness, nutrition, and
+              sleep.
+            </p>
           </div>
         }
         accent={
-          <div className="flex flex-col gap-4">
-            {c.metricsLine && (
-              <div className="rounded-2xl border border-slate-200/80 bg-slate-50 p-4">
-                <p className="font-mono text-[11px] uppercase tracking-wider text-slate-500">
-                  Track record
-                </p>
-                <p className="mt-1 text-base font-semibold text-slate-900">
-                  {c.metricsLine}
-                </p>
-              </div>
-            )}
-            <ChapterCard
-              status={card.status}
-              title={card.title}
-              body={card.body}
-            />
-          </div>
+          <ChapterCard
+            status={card.status}
+            title={card.title}
+            body={card.body}
+          />
         }
         details={
-          <div>
-            {c.body?.[1] && (
-              <p className="text-sm font-mono uppercase tracking-wider text-slate-500">
-                {c.body[1]}
-              </p>
-            )}
-            {c.bullets && c.bullets.length > 0 && (
-              <ul className="mt-3 space-y-2.5 text-[15px] text-slate-700">
-                {c.bullets.map((b, i) => (
-                  <li key={i} className="flex gap-3">
-                    <span
-                      aria-hidden
-                      className="mt-2 size-1.5 shrink-0 rounded-full bg-slate-400"
-                    />
-                    <span>
-                      <strong className="font-semibold text-slate-900">
-                        {b.lead}
-                      </strong>
-                      {b.rest}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            )}
+          <div className="space-y-4">
+            <p className="text-[15px] leading-relaxed text-slate-700">
+              The portfolio runs at{" "}
+              <strong className="font-semibold text-slate-900">
+                $5.6M annualized revenue · 315K monthly active users · 14
+                active studios
+              </strong>
+              . I own end-to-end product on 6 consumer iOS apps: concept, MVP
+              specs, App Store launch, growth experiments, cohort analyses on
+              CAC, D1/D7/D30 retention, and LTV to call what to scale vs. kill.
+              20+ studios onboarded, 100+ A/B tests run.
+            </p>
+            <StoodOut lead="Built Scouty, our internal CRM, from scratch.">
+              Sourcing was scattered across spreadsheets and qualification was
+              painfully manual. I designed and coded Scouty in ~4 weeks:
+              structured sourcing, outreach, qualification, follow-up. Result:
+              ~3x partner sourcing throughput, now used daily by the whole
+              publishing team. When I see a recurring problem, I&apos;d rather
+              build the fix than document it.
+            </StoodOut>
+            <StoodOut lead="Shipped 6 apps and prototypes alongside the strategy work.">
+              Not to replace dev studios — to actually understand what it takes
+              to build, test, and iterate. Sharper product taste, better grasp
+              of technical constraints, and much more concrete conversations
+              with founders, devs, and designers. The best PMs in consumer are
+              the ones who could ship the v1 themselves.
+            </StoodOut>
           </div>
         }
       />

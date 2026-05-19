@@ -2,10 +2,9 @@ import { CHAPTERS, WHATS_NEXT_CARDS } from "@/content/chapters";
 import { ChapterCard } from "@/components/ui/ChapterCard";
 import { SceneIllustration } from "@/components/ui/SceneIllustration";
 import { ChapterEditorialScene } from "@/components/motion/ChapterEditorialScene";
-import { renderRichLine } from "@/lib/richText";
 
 export function ChapterWhatsNext() {
-  const c = CHAPTERS[5];
+  const c = CHAPTERS[6];
   return (
     <section
       id="whats-next"
@@ -28,9 +27,11 @@ export function ChapterWhatsNext() {
             <h2 className="mt-2 text-3xl font-semibold leading-tight text-slate-900 md:text-4xl">
               {c.title}
             </h2>
-            {c.body?.[0] && (
-              <p className="mt-4 text-slate-700">{c.body[0]}</p>
-            )}
+            <p className="mt-4 text-slate-700">
+              Still figuring it out, honestly. What I know: the next few years
+              are about building things real people want to use, and being
+              around teams who make that look easy.
+            </p>
           </div>
         }
         accent={
@@ -47,11 +48,21 @@ export function ChapterWhatsNext() {
         }
         details={
           <div className="space-y-3 text-[15px] text-slate-700">
-            {c.body?.[1] && <p>{renderRichLine(c.body[1])}</p>}
-            {c.body?.[2] && <p>{renderRichLine(c.body[2])}</p>}
-            {c.body?.[3] && (
-              <p className="font-medium text-slate-900">{c.body[3]}</p>
-            )}
+            <p>
+              What pulls me in: consumer products, growth that compounds,
+              software that feels personal. Mostly though, it&apos;s about
+              working with people who care a stupid amount about what
+              they&apos;re making.
+            </p>
+            <p>
+              The fun part isn&apos;t picking a label. It&apos;s getting in the
+              middle of something ambitious and shipping. I&apos;ll figure out
+              the rest.
+            </p>
+            <p className="font-medium text-slate-900">
+              Long-term, building my own. Right now, relocating to San
+              Francisco and open to conversations.
+            </p>
           </div>
         }
       />
