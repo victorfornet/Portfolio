@@ -1,51 +1,71 @@
-import { CHAPTERS, TIMELINE_CARDS } from "@/content/chapters";
-import { ChapterCard } from "@/components/ui/ChapterCard";
-import { SceneIllustration } from "@/components/ui/SceneIllustration";
-import { ChapterEditorialScene } from "@/components/motion/ChapterEditorialScene";
+"use client";
+import Image from "next/image";
+import { useRef } from "react";
+import { motion, useReducedMotion, useTransform } from "framer-motion";
+import { CHAPTER_STATS, ANNOTATIONS } from "@/content/chapters";
+import { Marker } from "@/components/ui/Marker";
+import { Chip } from "@/components/ui/Pill";
+import { Megastat } from "@/components/ui/Megastat";
+import { Annot } from "@/components/ui/Annot";
+import { Numeral } from "@/components/ui/Numeral";
+import { useChapterProgress } from "@/lib/use-chapter-progress";
 
-const LINK = "underline decoration-slate-300 decoration-1 underline-offset-4 transition-colors hover:text-slate-900 hover:decoration-slate-500";
-
-function StoodOut({ lead, children }: { lead: string; children: React.ReactNode }) {
-  return (
-    <div className="border-l-2 border-slate-200 pl-4">
-      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
-        Stood out
-      </p>
-      <p className="mt-1.5 text-[15px] leading-relaxed text-slate-700">
-        <strong className="font-semibold text-slate-900">{lead}</strong>{" "}
-        {children}
-      </p>
-    </div>
-  );
-}
+const LINK =
+  "underline decoration-slate-300 decoration-1 underline-offset-4 transition-colors hover:text-slate-900 hover:decoration-slate-500";
 
 export function ChapterBuilderStudio() {
-  const c = CHAPTERS[3];
-  const card = TIMELINE_CARDS.rocapine;
+  const stats = CHAPTER_STATS.rocapine;
+  const annots = ANNOTATIONS.rocapine;
+  const ref = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
+  const progress = useChapterProgress(ref);
+
+  const headOpacity = useTransform(progress, [0.05, 0.4], [0, 1]);
+  const headY = useTransform(progress, [0.05, 0.4], [-20, 0]);
+  const statsOpacity = useTransform(progress, [0.2, 0.55], [0, 1]);
+  const statsY = useTransform(progress, [0.2, 0.55], [12, 0]);
+  const annotOpacity = useTransform(progress, [0.3, 0.65], [0, 1]);
+  const annotY = useTransform(progress, [0.3, 0.65], [20, 0]);
+  const sceneOpacity = useTransform(progress, [0, 0.35], [0, 1]);
+  const sceneClip = useTransform(
+    progress,
+    [0, 0.35],
+    ["inset(0 0 0 100%)", "inset(0 0 0 0)"],
+  );
+
   return (
     <section
+      ref={ref}
       id="builder-studio"
-      className="relative isolate flex min-h-screen items-center bg-white px-6 py-20 md:px-10 md:py-24"
+      className="relative isolate flex min-h-screen items-stretch overflow-hidden bg-paper"
     >
-      <ChapterEditorialScene
-        className="mx-auto max-w-6xl"
-        media={
-          <SceneIllustration
-            fill
-            src="/pixel/builder-studio.png"
-            alt="Pixel-art workshop with floating smartphones around a blond character."
-          />
-        }
-        header={
-          <div>
-            <p className="font-mono text-xs uppercase tracking-wider text-slate-500">
-              {c.label}
-            </p>
-            <h2 className="mt-2 text-3xl font-semibold leading-tight text-slate-900 md:text-4xl">
-              {c.title}
+      <Numeral position={{ bottom: -180, right: -40 }}>III</Numeral>
+
+      <div className="relative z-10 flex h-full w-full flex-col gap-5 px-14 py-12">
+        <div className="flex items-start justify-between">
+          <Marker num="III" label="Chapter III · Product · Rocapine" />
+          <Chip>Active · publishing PM · since jan 2026</Chip>
+        </div>
+
+        <motion.div
+          style={reduced ? undefined : { opacity: statsOpacity, y: statsY }}
+          className="grid grid-cols-4 gap-8 border-y border-slate-300/60 py-3.5"
+        >
+          {stats.map((s) => (
+            <Megastat key={s.value} num={s.value} label={s.label} />
+          ))}
+        </motion.div>
+
+        <div className="grid min-h-0 flex-1 grid-cols-1 gap-9 md:grid-cols-[1fr_480px]">
+          <motion.div
+            style={reduced ? undefined : { opacity: headOpacity, y: headY }}
+            className="flex flex-col gap-4"
+          >
+            <h2 className="font-serif text-[84px] font-normal italic leading-[0.98] tracking-[-0.03em] text-slate-900">
+              rocapine.
             </h2>
-            <p className="mt-4 text-slate-700">
-              I&apos;m a Product Manager at{" "}
+            <p className="max-w-[50ch] text-[15.5px] leading-relaxed text-slate-700">
+              Product Manager at{" "}
               <a
                 href="https://rocapine.com"
                 target="_blank"
@@ -54,51 +74,45 @@ export function ChapterBuilderStudio() {
               >
                 Rocapine
               </a>
-              , a mobile app publisher in wellness. We ship low-cost app demos,
-              test distribution, and scale what performs with GenAI-powered
-              personalization across mental health, fitness, nutrition, and
-              sleep.
+              , a mobile app publisher in wellness. We ship low-cost demos,
+              test distribution, and scale what performs: GenAI-powered
+              personalization across mental health, fitness, nutrition, sleep.
+              I own end-to-end product on 6 consumer iOS apps: concept, MVP
+              specs, App Store launch, growth experiments, cohort analyses,
+              and the LTV calls to scale vs. kill.
             </p>
-          </div>
-        }
-        accent={
-          <ChapterCard
-            status={card.status}
-            title={card.title}
-            body={card.body}
-          />
-        }
-        details={
-          <div className="space-y-4">
-            <p className="text-[15px] leading-relaxed text-slate-700">
-              The portfolio runs at{" "}
-              <strong className="font-semibold text-slate-900">
-                $5.6M annualized revenue · 315K monthly active users · 14
-                active studios
-              </strong>
-              . I own end-to-end product on 6 consumer iOS apps: concept, MVP
-              specs, App Store launch, growth experiments, cohort analyses on
-              CAC, D1/D7/D30 retention, and LTV to call what to scale vs. kill.
-              20+ studios onboarded, 100+ A/B tests run.
-            </p>
-            <StoodOut lead="Built Scouty, our internal CRM, from scratch.">
-              Sourcing was scattered across spreadsheets and qualification was
-              painfully manual. I designed and coded Scouty in ~4 weeks:
-              structured sourcing, outreach, qualification, follow-up. Result:
-              ~3x partner sourcing throughput, now used daily by the whole
-              publishing team. When I see a recurring problem, I&apos;d rather
-              build the fix than document it.
-            </StoodOut>
-            <StoodOut lead="Shipped 6 apps and prototypes alongside the strategy work.">
-              Not to replace dev studios, but to actually understand what it takes
-              to build, test, and iterate. Sharper product taste, better grasp
-              of technical constraints, and much more concrete conversations
-              with founders, devs, and designers. The best PMs in consumer are
-              the ones who could ship the v1 themselves.
-            </StoodOut>
-          </div>
-        }
-      />
+            <motion.div
+              style={
+                reduced ? undefined : { opacity: annotOpacity, y: annotY }
+              }
+              className="mt-auto flex flex-col gap-3.5"
+            >
+              {annots.map((a, i) => (
+                <Annot key={a.lead} idx={["i.", "ii."][i]} lead={a.lead}>
+                  {a.body}
+                </Annot>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            style={
+              reduced
+                ? undefined
+                : { opacity: sceneOpacity, clipPath: sceneClip }
+            }
+            className="relative overflow-hidden rounded-[18px] shadow-[0_24px_60px_-28px_rgba(12,30,55,0.45)] ring-1 ring-black/5"
+          >
+            <Image
+              src="/pixel/builder-studio.png"
+              alt="Pixel-art workshop with floating smartphones around a blond character."
+              fill
+              sizes="(min-width: 768px) 480px, 100vw"
+              className="pixelated object-cover"
+            />
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 }

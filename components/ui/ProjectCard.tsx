@@ -27,7 +27,15 @@ export function ProjectCard({
       <div className="relative flex flex-col gap-3">
         <div className="flex items-center justify-between">
           <div className="flex size-8 items-center justify-center rounded-lg bg-white/10 transition-colors duration-300 group-hover:bg-white/20">
-            <span className="size-2 rounded-full bg-emerald-400" aria-hidden />
+            <span
+              className={cn(
+                "size-2 rounded-full",
+                project.status === "Internal tool"
+                  ? "bg-[#9aa6b8] shadow-[0_0_0_4px_rgba(154,166,184,0.18)]"
+                  : "bg-emerald-400 shadow-[0_0_0_4px_rgba(130,226,107,0.18)]",
+              )}
+              aria-hidden
+            />
           </div>
           <span className="rounded-lg bg-white/10 px-2 py-1 text-xs font-medium text-white/70 backdrop-blur-sm transition-colors duration-300 group-hover:bg-white/20">
             {project.status}

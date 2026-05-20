@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Inter_Tight, JetBrains_Mono, Press_Start_2P } from "next/font/google";
+import {
+  Inter_Tight,
+  JetBrains_Mono,
+  Instrument_Serif,
+  Press_Start_2P,
+} from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
 import { NavBar } from "@/components/ui/NavBar";
@@ -9,6 +14,13 @@ import { CinematicBackground } from "@/components/scene/CinematicBackground";
 
 const sans = Inter_Tight({ subsets: ["latin"], variable: "--font-sans-loaded" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono-loaded" });
+const serif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-serif-loaded",
+  display: "swap",
+});
 const pixel = Press_Start_2P({
   subsets: ["latin"],
   weight: "400",
@@ -23,7 +35,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${sans.variable} ${mono.variable} ${pixel.variable}`}>
+    <html lang="en" className={`${sans.variable} ${mono.variable} ${serif.variable} ${pixel.variable}`}>
       <body className="font-sans antialiased">
         <SmoothScrollProvider>
           <CinematicBackground />

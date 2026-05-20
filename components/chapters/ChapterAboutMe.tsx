@@ -1,45 +1,80 @@
-import { CHAPTERS, VALUES } from "@/content/chapters";
+"use client";
+import { useRef } from "react";
+import { motion, useReducedMotion, useTransform } from "framer-motion";
+import { VALUES_GROUPED } from "@/content/chapters";
+import { Marker } from "@/components/ui/Marker";
+import { Numeral } from "@/components/ui/Numeral";
+import { useChapterProgress } from "@/lib/use-chapter-progress";
 
 export function ChapterAboutMe() {
-  const c = CHAPTERS[5];
+  const ref = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
+  const progress = useChapterProgress(ref);
+
+  const headOpacity = useTransform(progress, [0.05, 0.4], [0, 1]);
+  const headY = useTransform(progress, [0.05, 0.4], [-20, 0]);
+  const valuesOpacity = useTransform(progress, [0.2, 0.6], [0, 1]);
+
   return (
     <section
+      ref={ref}
       id="about-me"
-      className="relative isolate flex min-h-screen items-center bg-white px-6 py-20 md:px-10 md:py-24"
+      className="relative isolate flex min-h-screen items-stretch overflow-hidden bg-white"
     >
-      <div className="mx-auto w-full max-w-6xl">
-        <div className="max-w-2xl">
-          <p className="font-mono text-xs uppercase tracking-wider text-slate-500">
-            {c.label}
-          </p>
-          <h2 className="mt-2 text-3xl font-semibold leading-tight text-slate-900 md:text-4xl">
-            {c.title}
-          </h2>
-          <p className="mt-4 text-slate-700">
-            A few things about how I work and what I value.
-          </p>
+      <Numeral size={380} position={{ bottom: -100, right: -30 }}>
+        V
+      </Numeral>
+
+      <div className="relative z-10 flex h-full w-full flex-col gap-5 px-16 py-12">
+        <div className="flex items-end justify-between">
+          <motion.div
+            style={reduced ? undefined : { opacity: headOpacity, y: headY }}
+            className="flex max-w-3xl flex-col gap-4"
+          >
+            <Marker num="V" label="Chapter V · About me" />
+            <h2 className="text-[96px] font-semibold leading-[0.98] tracking-[-0.03em] text-slate-900">
+              how I{" "}
+              <em className="font-serif font-normal italic text-sky-700">
+                work,
+              </em>
+              <br />
+              what I{" "}
+              <em className="font-serif font-normal italic text-sky-700">
+                value.
+              </em>
+            </h2>
+          </motion.div>
+          <span
+            className="font-mono text-[11px] uppercase tracking-[0.16em] text-slate-500"
+            style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+          >
+            eight values · three lenses
+          </span>
         </div>
 
-        <ul className="mt-10 grid grid-cols-1 gap-x-8 gap-y-6 md:mt-12 md:grid-cols-2 md:gap-y-8">
-          {VALUES.map((v, i) => (
-            <li
+        <motion.div
+          style={reduced ? undefined : { opacity: valuesOpacity }}
+          className="mt-2 grid grid-cols-1 gap-x-12 md:grid-cols-2"
+        >
+          {VALUES_GROUPED.map((v, i) => (
+            <div
               key={v.title}
-              className="group relative border-t border-slate-200 pt-4"
+              className="grid grid-cols-[140px_1fr] items-baseline gap-5 border-t border-slate-300/60 py-4"
             >
-              <div className="flex items-baseline gap-3">
-                <span className="font-mono text-[11px] tracking-wider text-slate-400 tabular-nums">
-                  {String(i + 1).padStart(2, "0")}
+              <div className="flex flex-col gap-1.5">
+                <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-slate-400">
+                  {String(i + 1).padStart(2, "0")} · {v.category}
                 </span>
-                <h3 className="text-[17px] font-semibold tracking-tight text-slate-900">
+                <h3 className="text-[24px] font-semibold -tracking-[0.015em] text-slate-900">
                   {v.title}
                 </h3>
               </div>
-              <p className="mt-2 pl-8 text-[15px] leading-relaxed text-slate-600">
+              <p className="text-[13.5px] leading-relaxed text-slate-600">
                 {v.body}
               </p>
-            </li>
+            </div>
           ))}
-        </ul>
+        </motion.div>
       </div>
     </section>
   );

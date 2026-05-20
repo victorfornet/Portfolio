@@ -4,6 +4,7 @@
   /* Colors: Cofounder-inspired palette */
   --color-sky-50:  #eaf6ff;
   --color-sky-200: #bfe4ff;
+  --color-sky-300: #90cdf7;
   --color-sky-400: #5cb9ff;
   --color-sky-500: #2ea1ff;
   --color-sky-700: #1366b0;
@@ -15,9 +16,21 @@
   --color-dusk-700: #2a2440;
   --color-sunset-400: #ffb064;
 
+  /* Paper surface — between cream and sky for Ch I, III, V */
+  --color-paper: #fbfaf6;
+
+  /* Ink scale */
+  --color-ink:    #0c1726;
+  --color-ink-80: #1b2a3e;
+  --color-ink-60: #46556b;
+  --color-ink-40: #7c8aa1;
+  --color-ink-20: #c5cedb;
+  --color-ink-10: #e3e9f1;
+
   /* Fonts */
   --font-sans:  "Inter Tight", ui-sans-serif, system-ui, sans-serif;
   --font-mono:  "JetBrains Mono", ui-monospace, monospace;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
   --font-pixel: "Press Start 2P", ui-monospace, monospace;
 }
 
