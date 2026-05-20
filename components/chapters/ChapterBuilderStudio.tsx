@@ -61,7 +61,7 @@ export function ChapterBuilderStudio() {
             style={reduced ? undefined : { opacity: headOpacity, y: headY }}
             className="flex flex-col gap-4"
           >
-            <h2 className="font-serif text-[84px] font-normal italic leading-[0.98] tracking-[-0.03em] text-slate-900">
+            <h2 className="font-serif text-[84px] font-normal italic leading-[0.98] tracking-[-0.03em] text-sky-700">
               rocapine.
             </h2>
             <p className="max-w-[50ch] text-[15.5px] leading-relaxed text-slate-700">
@@ -75,7 +75,7 @@ export function ChapterBuilderStudio() {
                 Rocapine
               </a>
               , a mobile app publisher in wellness. We ship low-cost demos,
-              test distribution, and scale what performs: GenAI-powered
+              test distribution, and scale what performs — GenAI-powered
               personalization across mental health, fitness, nutrition, sleep.
               I own end-to-end product on 6 consumer iOS apps: concept, MVP
               specs, App Store launch, growth experiments, cohort analyses,
@@ -110,6 +110,9 @@ export function ChapterBuilderStudio() {
               sizes="(min-width: 768px) 480px, 100vw"
               className="pixelated object-cover"
             />
+            <span className="absolute bottom-4 left-4 font-mono text-[10.5px] uppercase tracking-[0.16em] text-white/85">
+              ship · test · scale
+            </span>
           </motion.div>
         </div>
       </div>

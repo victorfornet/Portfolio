@@ -191,11 +191,11 @@ export const ANNOTATIONS: Record<string, readonly Annotation[]> = {
   rocapine: [
     {
       lead: "Built Scouty, our internal CRM, from scratch.",
-      body: "Sourcing was scattered across spreadsheets, qualification painfully manual. Designed and coded Scouty in ~4 weeks: structured sourcing, outreach, qualification, follow-up. Result: ~3× partner sourcing throughput, now used daily by the whole publishing team. When I see a recurring problem, I'd rather build the fix than document it.",
+      body: "Designed and coded it in ~4 weeks. ~3× partner sourcing throughput, used daily by the whole publishing team. When I see a recurring problem, I'd rather build the fix than document it.",
     },
     {
       lead: "Shipped 6 apps alongside the strategy work.",
-      body: "Not to replace dev studios, to actually understand what it takes to build, test, iterate. Sharper product taste, better grasp of technical constraints, more concrete conversations with founders, devs, and designers. The best PMs in consumer are the ones who could ship the v1 themselves.",
+      body: "Not to replace dev studios — to actually understand what it takes to build, test, iterate. The best PMs in consumer are the ones who could ship the v1 themselves.",
     },
   ],
 } as const;
