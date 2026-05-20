@@ -1,6 +1,7 @@
 import { CHAPTERS } from "@/content/chapters";
 import { CTA } from "@/components/ui/CTA";
 import { EmailCopy } from "@/components/ui/EmailCopy";
+import { Magnetic } from "@/components/ui/Magnetic";
 import { SceneIllustration } from "@/components/ui/SceneIllustration";
 import { Boxes } from "@/components/ui/Boxes";
 import { Reveal } from "@/components/motion/Reveal";
@@ -34,7 +35,9 @@ export function ChapterContact() {
               Building consumer, AI, or anything ambitious? Reach out.
             </p>
             <div className="pointer-events-auto mt-10 flex flex-wrap justify-center gap-3">
-              <EmailCopy email="victor.fornet@hec.edu" />
+              <Magnetic>
+                <EmailCopy email="victor.fornet@hec.edu" />
+              </Magnetic>
               <CTA
                 variant="secondary"
                 href="https://linkedin.com/in/victorfornet"

@@ -5,6 +5,7 @@ import { useActiveChapter } from "@/lib/use-active-chapter";
 import { CHAPTERS } from "@/content/chapters";
 import { cn } from "@/lib/cn";
 import { getSlotScrollY } from "@/lib/horizontal-track-math";
+import { ScrambleText } from "@/components/ui/ScrambleText";
 
 const NAV_IDS = [
   "hero",
@@ -94,7 +95,7 @@ export function NavBar() {
                   isActive ? "bg-white text-slate-900" : "text-white/80 hover:text-white",
                 )}
               >
-                {c.navLabel}
+                <ScrambleText text={c.navLabel} />
               </a>
             </li>
           );

@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useRef } from "react";
 import { motion, useReducedMotion, useTransform } from "framer-motion";
-import { CHAPTER_STATS, ANNOTATIONS } from "@/content/chapters";
+import { ANNOTATIONS } from "@/content/chapters";
 import { Marker } from "@/components/ui/Marker";
 import { Chip } from "@/components/ui/Pill";
 import { Megastat } from "@/components/ui/Megastat";
@@ -13,8 +13,9 @@ import { useChapterProgress } from "@/lib/use-chapter-progress";
 const LINK =
   "text-sky-700 underline decoration-sky-700/40 decoration-1 underline-offset-4 transition-colors hover:text-sky-500 hover:decoration-sky-700";
 
+const COUNT_RANGE: [number, number] = [0.2, 0.55];
+
 export function ChapterBuilderStudio() {
-  const stats = CHAPTER_STATS.rocapine;
   const annots = ANNOTATIONS.rocapine;
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
@@ -32,6 +33,18 @@ export function ChapterBuilderStudio() {
     [0, 0.35],
     ["inset(0 0 0 100%)", "inset(0 0 0 0)"],
   );
+
+  // Animated megastat numbers — scroll-linked count-up.
+  const arrNum = useTransform(progress, COUNT_RANGE, [0, 5.6]);
+  const arrText = useTransform(arrNum, (n) => `$${n.toFixed(1)}M`);
+  const mauNum = useTransform(progress, COUNT_RANGE, [0, 315]);
+  const mauText = useTransform(mauNum, (n) => `${Math.round(n)}K`);
+  const studiosNum = useTransform(progress, COUNT_RANGE, [0, 14]);
+  const studiosText = useTransform(studiosNum, (n) =>
+    Math.round(n).toString(),
+  );
+  const appsNum = useTransform(progress, COUNT_RANGE, [0, 6]);
+  const appsText = useTransform(appsNum, (n) => Math.round(n).toString());
 
   return (
     <section
@@ -51,9 +64,36 @@ export function ChapterBuilderStudio() {
           style={reduced ? undefined : { opacity: statsOpacity, y: statsY }}
           className="grid grid-cols-4 gap-8 border-y border-slate-300/60 py-3.5"
         >
-          {stats.map((s) => (
-            <Megastat key={s.value} num={s.value} label={s.label} />
-          ))}
+          <Megastat
+            num={
+              reduced ? (
+                "$5.6M"
+              ) : (
+                <motion.span>{arrText}</motion.span>
+              )
+            }
+            label="annualized revenue"
+          />
+          <Megastat
+            num={
+              reduced ? (
+                "315K"
+              ) : (
+                <motion.span>{mauText}</motion.span>
+              )
+            }
+            label="monthly active users"
+          />
+          <Megastat
+            num={
+              reduced ? "14" : <motion.span>{studiosText}</motion.span>
+            }
+            label="active studios"
+          />
+          <Megastat
+            num={reduced ? "6" : <motion.span>{appsText}</motion.span>}
+            label="apps shipped"
+          />
         </motion.div>
 
         <div className="grid min-h-0 flex-1 grid-cols-1 gap-9 md:grid-cols-[1fr_480px]">

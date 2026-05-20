@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 export function Megastat({
@@ -6,7 +7,7 @@ export function Megastat({
   dark,
   className,
 }: {
-  num: string;
+  num: ReactNode;
   label: string;
   dark?: boolean;
   className?: string;
@@ -15,7 +16,7 @@ export function Megastat({
     <div className={cn("flex flex-col gap-1", className)}>
       <div
         className={cn(
-          "font-serif text-[64px] italic font-normal leading-none -tracking-[0.02em]",
+          "font-serif text-[64px] italic font-normal leading-none -tracking-[0.02em] tabular-nums",
           dark ? "text-white" : "text-slate-900",
         )}
       >
