@@ -1,5 +1,5 @@
 "use client";
-import { useRef, type MouseEvent } from "react";
+import { useEffect, useRef } from "react";
 import {
   motion,
   useMotionValue,
@@ -26,20 +26,52 @@ export function ProjectCard({
   const my = useMotionValue(0);
   const sx = useSpring(mx, SPRING);
   const sy = useSpring(my, SPRING);
-  // Map cursor offsets [-0.5, 0.5] → small tilt in degrees.
   const rotateX = useTransform(sy, [-0.5, 0.5], ["6deg", "-6deg"]);
   const rotateY = useTransform(sx, [-0.5, 0.5], ["-6deg", "6deg"]);
 
-  function handleMove(e: MouseEvent<HTMLElement>) {
+  useEffect(() => {
     if (reduced) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    mx.set((e.clientX - rect.left) / rect.width - 0.5);
-    my.set((e.clientY - rect.top) / rect.height - 0.5);
-  }
-  function handleLeave() {
-    mx.set(0);
-    my.set(0);
-  }
+    const node = ref.current;
+    if (!node) return;
+
+    let rect: DOMRect | null = null;
+    let rafId: number | null = null;
+    let pendingEvent: PointerEvent | null = null;
+
+    function handleMove(e: PointerEvent) {
+      pendingEvent = e;
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        if (!rect || !pendingEvent) return;
+        mx.set((pendingEvent.clientX - rect.left) / rect.width - 0.5);
+        my.set((pendingEvent.clientY - rect.top) / rect.height - 0.5);
+      });
+    }
+
+    function handleEnter() {
+      rect = node!.getBoundingClientRect();
+      node!.addEventListener("pointermove", handleMove);
+    }
+
+    function handleLeave() {
+      node!.removeEventListener("pointermove", handleMove);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      rafId = null;
+      rect = null;
+      mx.set(0);
+      my.set(0);
+    }
+
+    node.addEventListener("pointerenter", handleEnter);
+    node.addEventListener("pointerleave", handleLeave);
+    return () => {
+      node.removeEventListener("pointerenter", handleEnter);
+      node.removeEventListener("pointerleave", handleLeave);
+      node.removeEventListener("pointermove", handleMove);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
+  }, [reduced, mx, my]);
 
   const hasDetails = Boolean(
     project.problem || project.approach || project.link,
@@ -48,22 +80,16 @@ export function ProjectCard({
   return (
     <motion.article
       ref={ref}
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
       style={
         reduced ? undefined : { rotateX, rotateY, transformStyle: "preserve-3d" }
       }
       whileHover={reduced ? undefined : { scale: 1.015 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
       className={cn(
-        "group relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur-sm transition-shadow duration-300 will-change-transform hover:shadow-[0_24px_60px_-28px_rgba(140,180,255,0.35)]",
+        "group relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] p-4 transition-shadow duration-300 will-change-transform hover:shadow-[0_24px_60px_-28px_rgba(140,180,255,0.35)]",
         className,
       )}
     >
-      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:4px_4px]" />
-      </div>
-
       <div
         className="relative flex flex-col gap-3"
         style={reduced ? undefined : { transform: "translateZ(20px)" }}
@@ -80,7 +106,7 @@ export function ProjectCard({
               aria-hidden
             />
           </div>
-          <span className="rounded-lg bg-white/10 px-2 py-1 text-xs font-medium text-white/70 backdrop-blur-sm transition-colors duration-300 group-hover:bg-white/20">
+          <span className="rounded-lg bg-white/10 px-2 py-1 text-xs font-medium text-white/70 transition-colors duration-300 group-hover:bg-white/20">
             {project.status}
           </span>
         </div>
@@ -99,7 +125,7 @@ export function ProjectCard({
             {project.stack.map((s) => (
               <span
                 key={s}
-                className="rounded-md bg-white/10 px-2 py-1 font-mono backdrop-blur-sm transition-colors hover:bg-white/20"
+                className="rounded-md bg-white/10 px-2 py-1 font-mono transition-colors hover:bg-white/20"
               >
                 {s}
               </span>
@@ -132,8 +158,6 @@ export function ProjectCard({
           </div>
         )}
       </div>
-
-      <div className="pointer-events-none absolute inset-0 -z-10 rounded-xl bg-gradient-to-br from-transparent via-white/10 to-transparent p-px opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
     </motion.article>
   );
 }

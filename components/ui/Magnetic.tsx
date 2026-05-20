@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import {
   motion,
   useMotionValue,
@@ -20,9 +20,7 @@ export function Magnetic({
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(false);
   const reduced = useReducedMotion();
-
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, SPRING_CONFIG);
@@ -33,36 +31,53 @@ export function Magnetic({
     const node = ref.current;
     if (!node) return;
 
-    function onMove(e: MouseEvent) {
-      if (!node) return;
-      const rect = node.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      if (active) {
-        x.set((e.clientX - cx) * distance);
-        y.set((e.clientY - cy) * distance);
-      } else {
-        x.set(0);
-        y.set(0);
-      }
+    let rect: DOMRect | null = null;
+    let rafId: number | null = null;
+    let pendingEvent: PointerEvent | null = null;
+
+    function handleMove(e: PointerEvent) {
+      pendingEvent = e;
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        if (!rect || !pendingEvent) return;
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        x.set((pendingEvent.clientX - cx) * distance);
+        y.set((pendingEvent.clientY - cy) * distance);
+      });
     }
 
-    document.addEventListener("mousemove", onMove);
-    return () => document.removeEventListener("mousemove", onMove);
-  }, [active, distance, reduced, x, y]);
+    function handleEnter() {
+      rect = node!.getBoundingClientRect();
+      node!.addEventListener("pointermove", handleMove);
+    }
+
+    function handleLeave() {
+      node!.removeEventListener("pointermove", handleMove);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      rafId = null;
+      rect = null;
+      x.set(0);
+      y.set(0);
+    }
+
+    node.addEventListener("pointerenter", handleEnter);
+    node.addEventListener("pointerleave", handleLeave);
+    return () => {
+      node.removeEventListener("pointerenter", handleEnter);
+      node.removeEventListener("pointerleave", handleLeave);
+      node.removeEventListener("pointermove", handleMove);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
+  }, [distance, reduced, x, y]);
 
   if (reduced) {
     return <div className={className}>{children}</div>;
   }
 
   return (
-    <motion.div
-      ref={ref}
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
-      style={{ x: springX, y: springY }}
-      className={className}
-    >
+    <motion.div ref={ref} style={{ x: springX, y: springY }} className={className}>
       {children}
     </motion.div>
   );
