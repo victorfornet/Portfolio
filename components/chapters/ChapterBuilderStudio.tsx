@@ -11,7 +11,7 @@ import { Numeral } from "@/components/ui/Numeral";
 import { useChapterProgress } from "@/lib/use-chapter-progress";
 
 const LINK =
-  "underline decoration-slate-300 decoration-1 underline-offset-4 transition-colors hover:text-slate-900 hover:decoration-slate-500";
+  "text-sky-700 underline decoration-sky-700/40 decoration-1 underline-offset-4 transition-colors hover:text-sky-500 hover:decoration-sky-700";
 
 export function ChapterBuilderStudio() {
   const stats = CHAPTER_STATS.rocapine;

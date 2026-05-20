@@ -9,6 +9,9 @@ import { Annot } from "@/components/ui/Annot";
 import { Numeral } from "@/components/ui/Numeral";
 import { useChapterProgress } from "@/lib/use-chapter-progress";
 
+const LINK =
+  "text-sky-700 underline decoration-sky-700/40 decoration-1 underline-offset-4 transition-colors hover:text-sky-500 hover:decoration-sky-700";
+
 export function ChapterCorporateLab() {
   const stats = CHAPTER_STATS.corporateLab;
   const annots = ANNOTATIONS.corporateLab;
@@ -81,7 +84,16 @@ export function ChapterCorporateLab() {
             </em>
           </h2>
           <p className="max-w-[44ch] text-[15.5px] leading-relaxed text-slate-700">
-            Digital transformation for public-sector clients: a major French
+            At{" "}
+            <a
+              href="https://www.bearingpoint.com"
+              target="_blank"
+              rel="noreferrer"
+              className={LINK}
+            >
+              BearingPoint
+            </a>
+            , digital transformation for public-sector clients: a major French
             public health organization and a top-tier university. Helping large
             institutions modernize how their IS serves thousands of people.
           </p>
