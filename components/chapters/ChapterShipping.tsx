@@ -29,7 +29,7 @@ export function ChapterShipping() {
     <section
       ref={ref}
       id="shipping"
-      className="relative isolate flex min-h-screen items-stretch overflow-hidden bg-slate-950 text-white"
+      className="relative isolate flex min-h-screen items-stretch overflow-hidden bg-slate-950 text-white lg:h-screen"
     >
       <Numeral dark position={{ bottom: -150, left: -50 }}>
         IV
@@ -38,7 +38,7 @@ export function ChapterShipping() {
       <div className="relative z-10 grid h-full w-full grid-cols-1 gap-10 px-16 py-14 md:grid-cols-[1fr_1.4fr]">
         <motion.div
           style={reduced ? undefined : { opacity: headOpacity, y: headY }}
-          className="flex min-h-0 flex-col gap-4"
+          className="grid h-full min-h-0 grid-rows-[auto_auto_auto_auto_minmax(0,1fr)] gap-4"
         >
           <Marker dark num="IV" label="Chapter IV · Side projects" />
           <h2 className="text-[84px] font-semibold leading-[0.98] tracking-[-0.03em]">
@@ -53,7 +53,7 @@ export function ChapterShipping() {
             weekends, no excuses. Cursor + Claude Code, ship to TestFlight,
             put it in front of real users.
           </p>
-          <div className="mt-2 flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2">
             <Pill dark dot>
               <b className="font-semibold tabular-nums text-white">2</b>
               &nbsp;active builds
@@ -68,7 +68,7 @@ export function ChapterShipping() {
                 ? undefined
                 : { opacity: sceneOpacity, clipPath: sceneClip }
             }
-            className="relative mt-3 min-h-0 flex-1 overflow-hidden rounded-[18px] ring-1 ring-white/10"
+            className="relative min-h-0 overflow-hidden rounded-[18px] ring-1 ring-white/10"
           >
             <Image
               src="/pixel/shipping.png"
@@ -82,7 +82,7 @@ export function ChapterShipping() {
 
         <motion.div
           style={reduced ? undefined : { opacity: cardOpacity, y: cardY }}
-          className="grid grid-rows-2 gap-4"
+          className="grid h-full min-h-0 grid-rows-2 gap-4"
         >
           {PROJECTS.map((p) => (
             <ProjectCard key={p.id} project={p} />
