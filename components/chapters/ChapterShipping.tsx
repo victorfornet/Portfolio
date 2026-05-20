@@ -55,8 +55,8 @@ export function ChapterShipping() {
           </p>
           <div className="flex flex-wrap gap-2">
             <Pill dark dot>
-              <b className="font-semibold tabular-nums text-white">2</b>
-              &nbsp;active builds
+              <b className="font-semibold tabular-nums text-white">3</b>
+              &nbsp;projects
             </Pill>
             <Pill dark ghost>
               solo
