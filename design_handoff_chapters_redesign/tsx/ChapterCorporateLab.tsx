@@ -1,8 +1,9 @@
+// components/chapters/ChapterCorporateLab.tsx (Chapter II — bearingpoint.)
 "use client";
 import Image from "next/image";
 import { useRef } from "react";
 import { motion, useReducedMotion, useTransform } from "framer-motion";
-import { CHAPTER_STATS, ANNOTATIONS } from "@/content/chapters";
+import { CHAPTERS, CHAPTER_STATS, ANNOTATIONS } from "@/content/chapters";
 import { Marker } from "@/components/ui/Marker";
 import { Pill, Chip } from "@/components/ui/Pill";
 import { Annot } from "@/components/ui/Annot";
@@ -10,42 +11,34 @@ import { Numeral } from "@/components/ui/Numeral";
 import { useChapterProgress } from "@/lib/use-chapter-progress";
 
 export function ChapterCorporateLab() {
+  const c = CHAPTERS[2];
   const stats = CHAPTER_STATS.corporateLab;
   const annots = ANNOTATIONS.corporateLab;
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
   const progress = useChapterProgress(ref);
 
-  const headOpacity = useTransform(progress, [0.05, 0.4], [0, 1]);
-  const headY = useTransform(progress, [0.05, 0.4], [-20, 0]);
-  const statsOpacity = useTransform(progress, [0.2, 0.55], [0, 1]);
-  const annotOpacity = useTransform(progress, [0.3, 0.65], [0, 1]);
-  const annotY = useTransform(progress, [0.3, 0.65], [20, 0]);
-  const sceneOpacity = useTransform(progress, [0, 0.35], [0, 1]);
-  const sceneClip = useTransform(
-    progress,
-    [0, 0.35],
-    ["inset(0 100% 0 0)", "inset(0 0 0 0)"],
-  );
+  const headOpacity   = useTransform(progress, [0.05, 0.4], [0, 1]);
+  const headY         = useTransform(progress, [0.05, 0.4], [-20, 0]);
+  const statsOpacity  = useTransform(progress, [0.2, 0.55], [0, 1]);
+  const annotOpacity  = useTransform(progress, [0.3, 0.65], [0, 1]);
+  const annotY        = useTransform(progress, [0.3, 0.65], [20, 0]);
+  const sceneOpacity  = useTransform(progress, [0, 0.35], [0, 1]);
+  const sceneClip     = useTransform(progress, [0, 0.35],
+    ["inset(0 100% 0 0)", "inset(0 0 0 0)"]);
 
   return (
     <section
       ref={ref}
       id="corporate-lab"
-      className="relative isolate flex min-h-screen items-stretch overflow-hidden bg-sky-50 lg:h-screen"
+      className="relative isolate flex min-h-screen items-stretch bg-sky-50"
     >
-      <Numeral
-        position={{ bottom: -160, right: -60 }}
-        className="text-[rgba(19,102,176,0.07)]"
-      >
-        II
-      </Numeral>
+      <Numeral position={{ bottom: -160, right: -60 }} className="text-[rgba(19,102,176,0.07)]">II</Numeral>
 
       <div className="grid h-full w-full grid-cols-1 md:grid-cols-[560px_1fr]">
+        {/* full-bleed scene */}
         <motion.div
-          style={
-            reduced ? undefined : { opacity: sceneOpacity, clipPath: sceneClip }
-          }
+          style={reduced ? undefined : { opacity: sceneOpacity, clipPath: sceneClip }}
           className="relative overflow-hidden bg-[#0e2440]"
         >
           <Image
@@ -59,12 +52,13 @@ export function ChapterCorporateLab() {
             <span className="font-mono text-[10.5px] uppercase tracking-[0.16em] opacity-70">
               BearingPoint · Paris
             </span>
-            <span className="font-serif text-[22px] italic leading-tight -tracking-[0.01em]">
+            <span className="font-serif text-[22px] italic -tracking-[0.01em] leading-tight">
               Six months in the public sector.
             </span>
           </div>
         </motion.div>
 
+        {/* editorial column */}
         <motion.div
           style={reduced ? undefined : { opacity: headOpacity, y: headY }}
           className="relative z-10 flex flex-col gap-5 px-14 py-14"
@@ -74,14 +68,11 @@ export function ChapterCorporateLab() {
             <Chip done>Completed · jul–dec 2025 · paris</Chip>
           </div>
           <h2 className="text-[88px] font-semibold leading-[0.98] tracking-[-0.03em] text-slate-900">
-            bearing
-            <br />
-            <em className="font-serif font-normal italic text-sky-700">
-              point.
-            </em>
+            bearing<br />
+            <em className="font-serif font-normal italic text-sky-700">point.</em>
           </h2>
-          <p className="max-w-[44ch] text-[15.5px] leading-relaxed text-slate-700">
-            Digital transformation for public-sector clients: a major French
+          <p className="max-w-[44ch] text-slate-700 text-[15.5px] leading-relaxed">
+            Digital transformation for public-sector clients — a major French
             public health organization and a top-tier university. Helping large
             institutions modernize how their IS serves thousands of people.
           </p>
@@ -91,10 +82,7 @@ export function ChapterCorporateLab() {
           >
             {stats.map((s) => (
               <Pill key={s.value}>
-                <b className="font-semibold tabular-nums text-slate-900">
-                  {s.value}
-                </b>
-                &nbsp;{s.label}
+                <b className="font-semibold text-slate-900 tabular-nums">{s.value}</b>&nbsp;{s.label}
               </Pill>
             ))}
           </motion.div>

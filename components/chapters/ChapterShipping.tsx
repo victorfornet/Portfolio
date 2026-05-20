@@ -49,7 +49,7 @@ export function ChapterShipping() {
             </em>
           </h2>
           <p className="text-[15.5px] leading-relaxed text-white/80">
-            Where I learn the stack outside of work — solo, evenings and
+            Where I learn the stack outside of work: solo, evenings and
             weekends, no excuses. Cursor + Claude Code, ship to TestFlight,
             put it in front of real users.
           </p>

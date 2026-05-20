@@ -1,35 +1,33 @@
+// components/chapters/ChapterWhatsNext.tsx (Chapter VI — what's next.)
 "use client";
 import Image from "next/image";
 import { useRef } from "react";
 import { motion, useReducedMotion, useTransform } from "framer-motion";
+import { CHAPTERS, ANNOTATIONS } from "@/content/chapters";
 import { Marker } from "@/components/ui/Marker";
 import { Pill } from "@/components/ui/Pill";
 import { Numeral } from "@/components/ui/Numeral";
 import { useChapterProgress } from "@/lib/use-chapter-progress";
 
 export function ChapterWhatsNext() {
+  const c = CHAPTERS[6];
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
   const progress = useChapterProgress(ref);
 
-  const headOpacity = useTransform(progress, [0.05, 0.4], [0, 1]);
-  const headY = useTransform(progress, [0.05, 0.4], [-20, 0]);
-  const bodyOpacity = useTransform(progress, [0.2, 0.6], [0, 1]);
-  const bodyY = useTransform(progress, [0.2, 0.6], [20, 0]);
-  const sceneOpacity = useTransform(progress, [0, 0.35], [0, 1]);
+  const headOpacity  = useTransform(progress, [0.05, 0.4], [0, 1]);
+  const headY        = useTransform(progress, [0.05, 0.4], [-20, 0]);
+  const bodyOpacity  = useTransform(progress, [0.2, 0.6],  [0, 1]);
+  const bodyY        = useTransform(progress, [0.2, 0.6],  [20, 0]);
+  const sceneOpacity = useTransform(progress, [0, 0.35],   [0, 1]);
 
   return (
     <section
       ref={ref}
       id="whats-next"
-      className="relative isolate flex min-h-screen items-stretch overflow-hidden bg-sky-50 lg:h-screen"
+      className="relative isolate flex min-h-screen items-stretch bg-sky-50"
     >
-      <Numeral
-        position={{ bottom: -150, right: -50 }}
-        className="text-[rgba(19,102,176,0.08)]"
-      >
-        VI
-      </Numeral>
+      <Numeral position={{ bottom: -150, right: -50 }} className="text-[rgba(19,102,176,0.08)]">VI</Numeral>
 
       <div className="relative z-10 flex h-full w-full flex-col justify-between px-20 py-14">
         <motion.div
@@ -37,25 +35,20 @@ export function ChapterWhatsNext() {
           className="flex items-start justify-between gap-10"
         >
           <Marker num="VI" label="Chapter VI · What's next" />
-          <div className="flex flex-wrap gap-2">
-            <Pill dot>
-              <b className="font-semibold text-slate-900">Open to</b>
-              &nbsp;good conversations
-            </Pill>
+          <div className="flex gap-2">
+            <Pill dot><b className="font-semibold text-slate-900">Open to</b>&nbsp;good conversations</Pill>
             <Pill ghost>San Francisco · relocating</Pill>
           </div>
         </motion.div>
 
         <motion.div
           style={reduced ? undefined : { opacity: bodyOpacity, y: bodyY }}
-          className="grid grid-cols-1 items-center gap-14 md:grid-cols-[1fr_320px]"
+          className="grid grid-cols-[1fr_320px] items-center gap-14"
         >
           <div className="flex flex-col gap-5">
             <h2 className="max-w-[18ch] text-[64px] font-semibold leading-[1.04] tracking-[-0.03em] text-slate-900">
               Still{" "}
-              <em className="font-serif font-normal italic text-sky-700">
-                figuring it out,
-              </em>{" "}
+              <em className="font-serif font-normal italic text-sky-700">figuring it out,</em>{" "}
               honestly.
             </h2>
             <p className="max-w-[56ch] text-[19px] leading-relaxed text-slate-700">
@@ -69,7 +62,7 @@ export function ChapterWhatsNext() {
               What pulls me in: consumer products, growth that compounds,
               software that feels personal. Mostly though, it&apos;s about
               working with people who care a stupid amount about what
-              they&apos;re making. The fun part isn&apos;t picking a label,
+              they&apos;re making. The fun part isn&apos;t picking a label —
               it&apos;s getting in the middle of something ambitious and
               shipping. I&apos;ll figure out the rest.
             </p>
@@ -92,7 +85,7 @@ export function ChapterWhatsNext() {
               <div className="mb-2 font-mono text-[11px] uppercase tracking-[0.16em] text-slate-500">
                 long-term
               </div>
-              <p className="m-0 font-serif text-[22px] italic leading-tight -tracking-[0.01em] text-slate-900">
+              <p className="m-0 font-serif text-[22px] italic -tracking-[0.01em] leading-tight text-slate-900">
                 Building my own.
               </p>
             </div>

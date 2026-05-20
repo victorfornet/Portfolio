@@ -1,8 +1,9 @@
+// components/chapters/ChapterBuilderStudio.tsx (Chapter III — rocapine.)
 "use client";
 import Image from "next/image";
 import { useRef } from "react";
 import { motion, useReducedMotion, useTransform } from "framer-motion";
-import { CHAPTER_STATS, ANNOTATIONS } from "@/content/chapters";
+import { CHAPTERS, CHAPTER_STATS, ANNOTATIONS } from "@/content/chapters";
 import { Marker } from "@/components/ui/Marker";
 import { Chip } from "@/components/ui/Pill";
 import { Megastat } from "@/components/ui/Megastat";
@@ -14,30 +15,28 @@ const LINK =
   "underline decoration-slate-300 decoration-1 underline-offset-4 transition-colors hover:text-slate-900 hover:decoration-slate-500";
 
 export function ChapterBuilderStudio() {
+  const c = CHAPTERS[3];
   const stats = CHAPTER_STATS.rocapine;
   const annots = ANNOTATIONS.rocapine;
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
   const progress = useChapterProgress(ref);
 
-  const headOpacity = useTransform(progress, [0.05, 0.4], [0, 1]);
-  const headY = useTransform(progress, [0.05, 0.4], [-20, 0]);
-  const statsOpacity = useTransform(progress, [0.2, 0.55], [0, 1]);
-  const statsY = useTransform(progress, [0.2, 0.55], [12, 0]);
-  const annotOpacity = useTransform(progress, [0.3, 0.65], [0, 1]);
-  const annotY = useTransform(progress, [0.3, 0.65], [20, 0]);
-  const sceneOpacity = useTransform(progress, [0, 0.35], [0, 1]);
-  const sceneClip = useTransform(
-    progress,
-    [0, 0.35],
-    ["inset(0 0 0 100%)", "inset(0 0 0 0)"],
-  );
+  const headOpacity   = useTransform(progress, [0.05, 0.4], [0, 1]);
+  const headY         = useTransform(progress, [0.05, 0.4], [-20, 0]);
+  const statsOpacity  = useTransform(progress, [0.2, 0.55], [0, 1]);
+  const statsY        = useTransform(progress, [0.2, 0.55], [12, 0]);
+  const annotOpacity  = useTransform(progress, [0.3, 0.65], [0, 1]);
+  const annotY        = useTransform(progress, [0.3, 0.65], [20, 0]);
+  const sceneOpacity  = useTransform(progress, [0, 0.35], [0, 1]);
+  const sceneClip     = useTransform(progress, [0, 0.35],
+    ["inset(0 0 0 100%)", "inset(0 0 0 0)"]);
 
   return (
     <section
       ref={ref}
       id="builder-studio"
-      className="relative isolate flex min-h-screen items-stretch overflow-hidden bg-paper lg:h-screen"
+      className="relative isolate flex min-h-screen items-stretch bg-[#fbfaf6]"
     >
       <Numeral position={{ bottom: -180, right: -40 }}>III</Numeral>
 
@@ -47,6 +46,7 @@ export function ChapterBuilderStudio() {
           <Chip>Active · publishing PM · since jan 2026</Chip>
         </div>
 
+        {/* megastat strip */}
         <motion.div
           style={reduced ? undefined : { opacity: statsOpacity, y: statsY }}
           className="grid grid-cols-4 gap-8 border-y border-slate-300/60 py-3.5"
@@ -56,35 +56,27 @@ export function ChapterBuilderStudio() {
           ))}
         </motion.div>
 
-        <div className="grid min-h-0 flex-1 grid-cols-1 gap-9 md:grid-cols-[1fr_480px]">
+        <div className="grid flex-1 min-h-0 grid-cols-[1fr_480px] gap-9">
+          {/* left: title + lede + annotations */}
           <motion.div
             style={reduced ? undefined : { opacity: headOpacity, y: headY }}
             className="flex flex-col gap-4"
           >
-            <h2 className="font-serif text-[84px] font-normal italic leading-[0.98] tracking-[-0.03em] text-sky-700">
+            <h2 className="text-[84px] font-normal italic leading-[0.98] tracking-[-0.03em] text-slate-900 font-serif">
               rocapine.
             </h2>
-            <p className="max-w-[50ch] text-[15.5px] leading-relaxed text-slate-700">
+            <p className="max-w-[50ch] text-slate-700 text-[15.5px] leading-relaxed">
               Product Manager at{" "}
-              <a
-                href="https://rocapine.com"
-                target="_blank"
-                rel="noreferrer"
-                className={LINK}
-              >
-                Rocapine
-              </a>
-              , a mobile app publisher in wellness. We ship low-cost demos,
-              test distribution, and scale what performs: GenAI-powered
-              personalization across mental health, fitness, nutrition, sleep.
-              I own end-to-end product on 6 consumer iOS apps: concept, MVP
-              specs, App Store launch, growth experiments, cohort analyses,
-              and the LTV calls to scale vs. kill.
+              <a href="https://rocapine.com" target="_blank" rel="noreferrer" className={LINK}>Rocapine</a>
+              , a mobile app publisher in wellness. We ship low-cost demos, test
+              distribution, and scale what performs — GenAI-powered personalization
+              across mental health, fitness, nutrition, sleep. I own end-to-end
+              product on 6 consumer iOS apps: concept, MVP specs, App Store launch,
+              growth experiments, cohort analyses, and the LTV calls to scale vs.
+              kill.
             </p>
             <motion.div
-              style={
-                reduced ? undefined : { opacity: annotOpacity, y: annotY }
-              }
+              style={reduced ? undefined : { opacity: annotOpacity, y: annotY }}
               className="mt-auto flex flex-col gap-3.5"
             >
               {annots.map((a, i) => (
@@ -95,12 +87,9 @@ export function ChapterBuilderStudio() {
             </motion.div>
           </motion.div>
 
+          {/* right: scene */}
           <motion.div
-            style={
-              reduced
-                ? undefined
-                : { opacity: sceneOpacity, clipPath: sceneClip }
-            }
+            style={reduced ? undefined : { opacity: sceneOpacity, clipPath: sceneClip }}
             className="relative overflow-hidden rounded-[18px] shadow-[0_24px_60px_-28px_rgba(12,30,55,0.45)] ring-1 ring-black/5"
           >
             <Image
@@ -110,9 +99,6 @@ export function ChapterBuilderStudio() {
               sizes="(min-width: 768px) 480px, 100vw"
               className="pixelated object-cover"
             />
-            <span className="absolute bottom-4 left-4 font-mono text-[10.5px] uppercase tracking-[0.16em] text-white/85">
-              ship · test · scale
-            </span>
           </motion.div>
         </div>
       </div>

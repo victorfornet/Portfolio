@@ -1,0 +1,24 @@
+/* app/globals.css — additions to merge into existing @theme block */
+
+@import "tailwindcss";
+
+@theme {
+  /* …existing tokens stay… */
+
+  /* — Paper surface used by chapters I, III, V — */
+  --color-paper: #fbfaf6;
+
+  /* — Ink scale (re-stated for the new components) — */
+  --color-ink:    #0c1726;
+  --color-ink-80: #1b2a3e;
+  --color-ink-60: #46556b;
+  --color-ink-40: #7c8aa1;
+  --color-ink-20: #c5cedb;
+  --color-ink-10: #e3e9f1;
+
+  /* — New font family: Instrument Serif (italic emphasis + numerals) — */
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+}
+
+/* Pixel-rendered images (already present, kept for context) */
+.pixelated { image-rendering: pixelated; image-rendering: crisp-edges; }

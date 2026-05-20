@@ -170,7 +170,7 @@ export const CHAPTER_STATS: Record<string, readonly Stat[]> = {
 export const ANNOTATIONS: Record<string, readonly Annotation[]> = {
   foundation: [
     {
-      lead: "Master in Management — and a gap year to ship.",
+      lead: "Master in Management, and a gap year to ship.",
       body: "Three years of CPGE before HEC, one semester abroad at Thammasat, and right now a deliberate break from the classroom to build real products. The credentials are nice; the gap year is the part I actually wanted.",
     },
     {
@@ -185,7 +185,7 @@ export const ANNOTATIONS: Record<string, readonly Annotation[]> = {
     },
     {
       lead: "Deployed an IS used by 5,000+ internal users.",
-      body: "Defined needs, journeys, requirements; ran 15+ user workshops. A digital project wins because the process is clear and change is managed properly — not because the tool is well designed.",
+      body: "Defined needs, journeys, requirements; ran 15+ user workshops. A digital project wins because the process is clear and change is managed properly, not because the tool is well designed.",
     },
   ],
   rocapine: [
@@ -195,7 +195,7 @@ export const ANNOTATIONS: Record<string, readonly Annotation[]> = {
     },
     {
       lead: "Shipped 6 apps alongside the strategy work.",
-      body: "Not to replace dev studios — to actually understand what it takes to build, test, iterate. The best PMs in consumer are the ones who could ship the v1 themselves.",
+      body: "Not to replace dev studios, to actually understand what it takes to build, test, iterate. The best PMs in consumer are the ones who could ship the v1 themselves.",
     },
   ],
 } as const;
