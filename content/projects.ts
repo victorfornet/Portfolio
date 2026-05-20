@@ -27,6 +27,11 @@ export const PROJECTS: Project[] = [
     name: "Scouty",
     status: "Internal tool",
     summary:
-      "Custom CRM built from scratch for Rocapine's publishing team. Replaced scattered spreadsheets with a single source of truth for every studio interaction. Used daily by the team, scaled partner sourcing throughput ~3x.",
+      "Custom CRM built from scratch for Rocapine's publishing team. Replaced scattered spreadsheets with a single source of truth for every studio interaction. Used daily by the team, scaled partner sourcing throughput ~3×.",
+    stack: ["~4 weeks build", "in production", "~3× throughput"],
+    problem:
+      "Sourcing was scattered across spreadsheets and qualification was painfully manual.",
+    approach:
+      "Designed and coded Scouty in ~4 weeks: structured sourcing, outreach, qualification, follow-up. Now used daily by the publishing team.",
   },
 ];
