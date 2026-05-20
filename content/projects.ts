@@ -1,4 +1,4 @@
-export type ProjectStatus = "Building" | "Internal tool";
+export type ProjectStatus = "Building" | "Internal tool" | "Live";
 
 export type Project = {
   id: string;
@@ -21,6 +21,18 @@ export const PROJECTS: Project[] = [
     stack: ["React Native", "Expo", "TypeScript"],
     approach:
       "Solo build: product, UX, stack (Cursor + Claude Code), GTM, distribution.",
+  },
+  {
+    id: "arctic",
+    name: "Arctic",
+    status: "Live",
+    summary:
+      "One of the consumer iOS apps I shipped at Rocapine. Cold-exposure breathwork: guided protocols, progressions, and daily challenges. Live on the App Store.",
+    stack: ["iOS", "Rocapine", "App Store"],
+    link: {
+      label: "View on App Store",
+      href: "https://apps.apple.com/us/app/arctic-cold-breath/id6761479659",
+    },
   },
   {
     id: "scouty",

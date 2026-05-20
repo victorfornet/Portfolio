@@ -82,7 +82,7 @@ export function ChapterShipping() {
 
         <motion.div
           style={reduced ? undefined : { opacity: cardOpacity, y: cardY }}
-          className="grid h-full min-h-0 grid-rows-2 gap-4"
+          className="grid h-full min-h-0 grid-rows-3 gap-4"
         >
           {PROJECTS.map((p) => (
             <ProjectCard key={p.id} project={p} />
