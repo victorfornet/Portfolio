@@ -170,7 +170,7 @@ export const CHAPTER_STATS: Record<string, readonly Stat[]> = {
 export const ANNOTATIONS: Record<string, readonly Annotation[]> = {
   foundation: [
     {
-      lead: "Master in Management, and a gap year to ship.",
+      lead: "Master in Management — and a gap year to ship.",
       body: "Three years of CPGE before HEC, one semester abroad at Thammasat, and right now a deliberate break from the classroom to build real products. The credentials are nice; the gap year is the part I actually wanted.",
     },
     {
