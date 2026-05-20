@@ -55,7 +55,7 @@ export function ChapterBuilderStudio() {
                 Rocapine
               </a>
               , a mobile app publisher in wellness. We ship low-cost app demos,
-              test distribution, and scale what performs — with GenAI-powered
+              test distribution, and scale what performs with GenAI-powered
               personalization across mental health, fitness, nutrition, and
               sleep.
             </p>
@@ -90,7 +90,7 @@ export function ChapterBuilderStudio() {
               build the fix than document it.
             </StoodOut>
             <StoodOut lead="Shipped 6 apps and prototypes alongside the strategy work.">
-              Not to replace dev studios — to actually understand what it takes
+              Not to replace dev studios, but to actually understand what it takes
               to build, test, and iterate. Sharper product taste, better grasp
               of technical constraints, and much more concrete conversations
               with founders, devs, and designers. The best PMs in consumer are

@@ -82,7 +82,7 @@ export function ChapterCorporateLab() {
             <StoodOut lead="Deployed an IS used by 5,000+ internal users.">
               Defined business needs, user journeys, and functional
               requirements; ran 15+ user workshops. Takeaway: a digital project
-              doesn&apos;t win because the tool is well designed — it wins
+              doesn&apos;t win because the tool is well designed, it wins
               because the process is clear, the UX is intuitive, and change is
               managed properly.
             </StoodOut>

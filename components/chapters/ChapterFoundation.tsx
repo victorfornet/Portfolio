@@ -40,7 +40,7 @@ export function ChapterFoundation() {
               >
                 HEC Paris
               </a>{" "}
-              — ranked #1 worldwide by the Financial Times in 2025. Before that,
+              , ranked #1 worldwide by the Financial Times in 2025. Before that,
               three years in a French preparatory class (CPGE ECS), top 100 out
               of 9,000 candidates at the national entrance exam. One semester
               at Thammasat in Bangkok. Currently on a gap year to ship.
@@ -58,7 +58,7 @@ export function ChapterFoundation() {
           <div className="space-y-3 text-[15px] text-slate-700">
             <p>
               Beyond academics, I&apos;m Vice-President of the Ski Club at HEC
-              — leading a team of 11, managing a €75K annual budget, and
+              , leading a team of 11, managing a €75K annual budget, and
               organizing trips for 300+ students each year.
             </p>
           </div>

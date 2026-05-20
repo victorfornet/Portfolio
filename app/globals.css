@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colors — Cofounder-inspired palette */
+  /* Colors: Cofounder-inspired palette */
   --color-sky-50:  #eaf6ff;
   --color-sky-200: #bfe4ff;
   --color-sky-400: #5cb9ff;
