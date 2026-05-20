@@ -181,11 +181,11 @@ export const ANNOTATIONS: Record<string, readonly Annotation[]> = {
   corporateLab: [
     {
       lead: "Co-authored a 3-year digital master plan, presented to C-level.",
-      body: "Diagnostic of the existing IT landscape, target architecture, prioritization of 12+ initiatives. Moved exec stakeholders from a fragmented view to a shared roadmap with clearer investment calls. Takeaway: turning complex technical topics into something readable and actionable for senior decision-makers.",
+      body: "Diagnostic of the IT landscape, target architecture, prioritization of 12+ initiatives. Moved execs from a fragmented view to a shared roadmap with clearer investment calls.",
     },
     {
       lead: "Deployed an IS used by 5,000+ internal users.",
-      body: "Defined business needs, user journeys, functional requirements; ran 15+ user workshops. A digital project doesn't win because the tool is well designed, it wins because the process is clear, the UX is intuitive, and change is managed properly.",
+      body: "Defined needs, journeys, requirements; ran 15+ user workshops. A digital project wins because the process is clear and change is managed properly — not because the tool is well designed.",
     },
   ],
   rocapine: [

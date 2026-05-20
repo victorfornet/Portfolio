@@ -81,7 +81,7 @@ export function ChapterCorporateLab() {
             </em>
           </h2>
           <p className="max-w-[44ch] text-[15.5px] leading-relaxed text-slate-700">
-            Digital transformation for public-sector clients: a major French
+            Digital transformation for public-sector clients — a major French
             public health organization and a top-tier university. Helping large
             institutions modernize how their IS serves thousands of people.
           </p>
