@@ -37,7 +37,7 @@ export function ChapterBuilderStudio() {
     <section
       ref={ref}
       id="builder-studio"
-      className="relative isolate flex min-h-screen items-stretch overflow-hidden bg-paper"
+      className="relative isolate flex min-h-screen items-stretch overflow-hidden bg-paper lg:h-screen"
     >
       <Numeral position={{ bottom: -180, right: -40 }}>III</Numeral>
 

@@ -32,7 +32,7 @@ export function ChapterCorporateLab() {
     <section
       ref={ref}
       id="corporate-lab"
-      className="relative isolate flex min-h-screen items-stretch overflow-hidden bg-sky-50"
+      className="relative isolate flex min-h-screen items-stretch overflow-hidden bg-sky-50 lg:h-screen"
     >
       <Numeral
         position={{ bottom: -160, right: -60 }}

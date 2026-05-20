@@ -22,7 +22,7 @@ export function ChapterWhatsNext() {
     <section
       ref={ref}
       id="whats-next"
-      className="relative isolate flex min-h-screen items-stretch overflow-hidden bg-sky-50"
+      className="relative isolate flex min-h-screen items-stretch overflow-hidden bg-sky-50 lg:h-screen"
     >
       <Numeral
         position={{ bottom: -150, right: -50 }}
@@ -69,7 +69,7 @@ export function ChapterWhatsNext() {
               What pulls me in: consumer products, growth that compounds,
               software that feels personal. Mostly though, it&apos;s about
               working with people who care a stupid amount about what
-              they&apos;re making. The fun part isn&apos;t picking a label,
+              they&apos;re making. The fun part isn&apos;t picking a label —
               it&apos;s getting in the middle of something ambitious and
               shipping. I&apos;ll figure out the rest.
             </p>

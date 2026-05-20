@@ -35,7 +35,7 @@ export function ChapterFoundation() {
     <section
       ref={ref}
       id="foundation"
-      className="relative isolate flex min-h-screen items-stretch overflow-hidden bg-paper"
+      className="relative isolate flex min-h-screen items-stretch overflow-hidden bg-paper lg:h-screen"
     >
       <Numeral position={{ bottom: -160, left: -40 }}>I</Numeral>
 

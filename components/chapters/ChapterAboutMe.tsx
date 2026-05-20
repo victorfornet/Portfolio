@@ -19,7 +19,7 @@ export function ChapterAboutMe() {
     <section
       ref={ref}
       id="about-me"
-      className="relative isolate flex min-h-screen items-stretch overflow-hidden bg-white"
+      className="relative isolate flex min-h-screen items-stretch overflow-hidden bg-white lg:h-screen"
     >
       <Numeral size={380} position={{ bottom: -100, right: -30 }}>
         V
