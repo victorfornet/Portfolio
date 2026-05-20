@@ -1,6 +1,3 @@
-"use client";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/cn";
 import type { Project } from "@/content/projects";
 
@@ -11,8 +8,9 @@ export function ProjectCard({
   project: Project;
   className?: string;
 }) {
-  const [open, setOpen] = useState(false);
-  const hasExpandable = Boolean(project.problem || project.approach || project.link);
+  const hasDetails = Boolean(
+    project.problem || project.approach || project.link,
+  );
   return (
     <article
       className={cn(
@@ -64,49 +62,29 @@ export function ProjectCard({
           </div>
         )}
 
-        <AnimatePresence initial={false}>
-          {open && (
-            <motion.div
-              key="expanded"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="overflow-hidden"
-            >
-              <div className="space-y-3 border-t border-white/10 pt-3 text-sm leading-relaxed text-white/80">
-                {project.problem && (
-                  <p>
-                    <strong>Problem.</strong> {project.problem}
-                  </p>
-                )}
-                {project.approach && (
-                  <p>
-                    <strong>Approach.</strong> {project.approach}
-                  </p>
-                )}
-                {project.link && (
-                  <a
-                    href={project.link.href}
-                    className="font-semibold text-sky-400 underline-offset-4 hover:underline"
-                  >
-                    {project.link.label} ↗
-                  </a>
-                )}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {hasExpandable && (
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            className="self-start rounded font-mono text-xs text-white/50 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400"
-            aria-expanded={open}
-          >
-            {open ? "Collapse ↑" : "Read more ↓"}
-          </button>
+        {hasDetails && (
+          <div className="space-y-3 border-t border-white/10 pt-3 text-sm leading-relaxed text-white/80">
+            {project.problem && (
+              <p>
+                <strong>Problem.</strong> {project.problem}
+              </p>
+            )}
+            {project.approach && (
+              <p>
+                <strong>Approach.</strong> {project.approach}
+              </p>
+            )}
+            {project.link && (
+              <a
+                href={project.link.href}
+                target="_blank"
+                rel="noreferrer"
+                className="self-start font-semibold text-sky-400 underline-offset-4 hover:underline"
+              >
+                {project.link.label} ↗
+              </a>
+            )}
+          </div>
         )}
       </div>
 
