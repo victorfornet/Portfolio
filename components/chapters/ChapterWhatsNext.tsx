@@ -87,6 +87,7 @@ export function ChapterWhatsNext() {
                 src="/pixel/whats-next.png"
                 alt="Pixel-art sunrise with a blond character at the foot of a mountain path."
                 fill
+                quality={55}
                 sizes="(min-width: 1024px) 320px, (min-width: 768px) 280px, 100vw"
                 className="pixelated object-cover"
               />

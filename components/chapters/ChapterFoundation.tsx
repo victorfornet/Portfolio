@@ -109,6 +109,8 @@ export function ChapterFoundation() {
             src="/pixel/foundation.png"
             alt="Pixel-art campus at dawn with a blond character walking toward a university building."
             fill
+            priority
+            quality={55}
             sizes="(min-width: 1024px) 560px, 100vw"
             className="pixelated object-cover"
           />

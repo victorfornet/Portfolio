@@ -38,6 +38,7 @@ export function SceneIllustration({
           src={src}
           alt={alt}
           fill
+          quality={55}
           sizes="(min-width: 1024px) 50vw, (min-width: 768px) 60vw, 90vw"
           priority={priority}
           className="pixelated object-cover"
@@ -48,6 +49,7 @@ export function SceneIllustration({
           alt={alt}
           width={d.w}
           height={d.h}
+          quality={55}
           sizes="(min-width: 1024px) 50vw, (min-width: 768px) 60vw, 90vw"
           priority={priority}
           className="pixelated h-auto w-full"

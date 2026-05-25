@@ -77,6 +77,7 @@ export function ChapterShipping() {
               src="/pixel/shipping.png"
               alt="Pixel-art night workshop with a blond character coding on a laptop."
               fill
+              quality={55}
               sizes="(min-width: 1024px) 40vw, 100vw"
               className="pixelated object-cover"
             />

@@ -58,6 +58,7 @@ export function ChapterCorporateLab() {
             src="/pixel/corporate-lab.png"
             alt="Pixel-art corporate open-space with a blond character at a desk."
             fill
+            quality={55}
             sizes="(min-width: 1024px) 560px, 100vw"
             className="pixelated object-cover"
           />

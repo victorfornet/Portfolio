@@ -150,6 +150,7 @@ export function ChapterBuilderStudio() {
               src="/pixel/builder-studio.png"
               alt="Pixel-art workshop with floating smartphones around a blond character."
               fill
+              quality={55}
               sizes="(min-width: 1024px) 480px, 100vw"
               className="pixelated object-cover"
             />

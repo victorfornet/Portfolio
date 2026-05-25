@@ -42,6 +42,7 @@ export function CinematicBackground() {
           alt=""
           fill
           priority
+          quality={55}
           sizes="100vw"
           className="pixelated object-cover"
         />
