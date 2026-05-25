@@ -8,6 +8,7 @@ import { Pill, Chip } from "@/components/ui/Pill";
 import { Annot } from "@/components/ui/Annot";
 import { Numeral } from "@/components/ui/Numeral";
 import { useChapterProgress } from "@/lib/use-chapter-progress";
+import { useIsLg } from "@/lib/use-is-lg";
 
 const LINK =
   "text-sky-700 underline decoration-sky-700/40 decoration-1 underline-offset-4 transition-colors hover:text-sky-500 hover:decoration-sky-700";
@@ -17,6 +18,8 @@ export function ChapterCorporateLab() {
   const annots = ANNOTATIONS.corporateLab;
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
+  const isLg = useIsLg();
+  const staticView = reduced || !isLg;
   const progress = useChapterProgress(ref);
 
   const headOpacity = useTransform(progress, [0.05, 0.4], [0, 1]);
@@ -35,7 +38,7 @@ export function ChapterCorporateLab() {
     <section
       ref={ref}
       id="corporate-lab"
-      className="relative isolate flex min-h-screen items-stretch overflow-hidden bg-sky-50 lg:h-screen"
+      className="relative isolate flex flex-col items-stretch overflow-hidden bg-sky-50 md:min-h-dvh lg:h-dvh lg:flex-row"
     >
       <Numeral
         position={{ bottom: -160, right: -60 }}
@@ -44,46 +47,46 @@ export function ChapterCorporateLab() {
         II
       </Numeral>
 
-      <div className="grid h-full w-full grid-cols-1 md:grid-cols-[560px_1fr]">
+      <div className="grid h-full w-full grid-cols-1 lg:grid-cols-[560px_1fr]">
         <motion.div
           style={
-            reduced ? undefined : { opacity: sceneOpacity, clipPath: sceneClip }
+            staticView ? undefined : { opacity: sceneOpacity, clipPath: sceneClip }
           }
-          className="relative overflow-hidden bg-[#0e2440]"
+          className="relative aspect-[4/3] overflow-hidden bg-[#0e2440] lg:aspect-auto"
         >
           <Image
             src="/pixel/corporate-lab.png"
             alt="Pixel-art corporate open-space with a blond character at a desk."
             fill
-            sizes="(min-width: 768px) 560px, 100vw"
+            sizes="(min-width: 1024px) 560px, 100vw"
             className="pixelated object-cover"
           />
-          <div className="absolute bottom-6 left-6 flex flex-col gap-1.5 text-white">
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.16em] opacity-70">
+          <div className="absolute bottom-4 left-4 flex flex-col gap-1.5 text-white md:bottom-6 md:left-6">
+            <span className="font-mono text-[10px] uppercase tracking-[0.16em] opacity-70 md:text-[10.5px]">
               BearingPoint · Paris
             </span>
-            <span className="font-serif text-[22px] italic leading-tight -tracking-[0.01em]">
+            <span className="font-serif text-[18px] italic leading-tight -tracking-[0.01em] md:text-[22px]">
               Six months in the public sector.
             </span>
           </div>
         </motion.div>
 
         <motion.div
-          style={reduced ? undefined : { opacity: headOpacity, y: headY }}
-          className="relative z-10 flex flex-col gap-5 px-14 py-14"
+          style={staticView ? undefined : { opacity: headOpacity, y: headY }}
+          className="relative z-10 flex flex-col gap-5 px-5 py-12 md:px-10 md:py-14 lg:px-14"
         >
-          <div className="flex items-center justify-between">
+          <div className="flex flex-wrap items-center justify-between gap-3">
             <Marker num="II" label="Chapter II · Consulting" />
             <Chip done>Completed · jul–dec 2025 · paris</Chip>
           </div>
-          <h2 className="text-[88px] font-semibold leading-[0.98] tracking-[-0.03em] text-slate-900">
+          <h2 className="text-[40px] font-semibold leading-[0.98] tracking-[-0.03em] text-slate-900 md:text-[64px] lg:text-[88px]">
             bearing
             <br />
             <em className="font-serif font-normal italic text-sky-700">
               point.
             </em>
           </h2>
-          <p className="max-w-[44ch] text-[15.5px] leading-relaxed text-slate-700">
+          <p className="max-w-[44ch] text-[15px] leading-relaxed text-slate-700 md:text-[15.5px]">
             At{" "}
             <a
               href="https://www.bearingpoint.com"
@@ -98,7 +101,7 @@ export function ChapterCorporateLab() {
             institutions modernize how their IS serves thousands of people.
           </p>
           <motion.div
-            style={reduced ? undefined : { opacity: statsOpacity }}
+            style={staticView ? undefined : { opacity: statsOpacity }}
             className="flex flex-wrap gap-2"
           >
             {stats.map((s) => (
@@ -112,7 +115,7 @@ export function ChapterCorporateLab() {
           </motion.div>
 
           <motion.div
-            style={reduced ? undefined : { opacity: annotOpacity, y: annotY }}
+            style={staticView ? undefined : { opacity: annotOpacity, y: annotY }}
             className="mt-auto flex flex-col gap-4"
           >
             {annots.map((a, i) => (

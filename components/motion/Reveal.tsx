@@ -2,6 +2,7 @@
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { fadeUp } from "@/lib/motion-presets";
 import { cn } from "@/lib/cn";
+import { useIsLg } from "@/lib/use-is-lg";
 
 export function Reveal({
   children,
@@ -17,7 +18,8 @@ export function Reveal({
   amount?: number;
 }) {
   const reduced = useReducedMotion();
-  if (reduced) return <div className={className}>{children}</div>;
+  const isLg = useIsLg();
+  if (reduced || !isLg) return <div className={className}>{children}</div>;
   return (
     <motion.div
       className={cn(className)}

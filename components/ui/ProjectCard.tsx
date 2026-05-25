@@ -8,6 +8,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { cn } from "@/lib/cn";
+import { useFinePointer } from "@/lib/use-fine-pointer";
 import type { Project } from "@/content/projects";
 
 const SPRING = { stiffness: 220, damping: 18 };
@@ -20,6 +21,8 @@ export function ProjectCard({
   className?: string;
 }) {
   const reduced = useReducedMotion();
+  const fine = useFinePointer();
+  const tilt = !reduced && fine;
   const ref = useRef<HTMLElement | null>(null);
 
   const mx = useMotionValue(0);
@@ -30,7 +33,7 @@ export function ProjectCard({
   const rotateY = useTransform(sx, [-0.5, 0.5], ["-6deg", "6deg"]);
 
   useEffect(() => {
-    if (reduced) return;
+    if (!tilt) return;
     const node = ref.current;
     if (!node) return;
 
@@ -71,7 +74,7 @@ export function ProjectCard({
       node.removeEventListener("pointermove", handleMove);
       if (rafId !== null) cancelAnimationFrame(rafId);
     };
-  }, [reduced, mx, my]);
+  }, [tilt, mx, my]);
 
   const hasDetails = Boolean(
     project.problem || project.approach || project.link,
@@ -81,18 +84,19 @@ export function ProjectCard({
     <motion.article
       ref={ref}
       style={
-        reduced ? undefined : { rotateX, rotateY, transformStyle: "preserve-3d" }
+        tilt ? { rotateX, rotateY, transformStyle: "preserve-3d" } : undefined
       }
-      whileHover={reduced ? undefined : { scale: 1.015 }}
+      whileHover={tilt ? { scale: 1.015 } : undefined}
+      whileTap={fine ? undefined : { scale: 0.985 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
       className={cn(
-        "group relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] p-4 transition-shadow duration-300 will-change-transform hover:shadow-[0_24px_60px_-28px_rgba(140,180,255,0.35)]",
+        "group relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] p-4 transition-shadow duration-300 will-change-transform [@media(hover:hover)]:hover:shadow-[0_24px_60px_-28px_rgba(140,180,255,0.35)]",
         className,
       )}
     >
       <div
         className="relative flex flex-col gap-3"
-        style={reduced ? undefined : { transform: "translateZ(20px)" }}
+        style={tilt ? { transform: "translateZ(20px)" } : undefined}
       >
         <div className="flex items-center justify-between">
           <div className="flex size-8 items-center justify-center rounded-lg bg-white/10 transition-colors duration-300 group-hover:bg-white/20">

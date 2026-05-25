@@ -23,7 +23,7 @@ export function Numeral({
         className,
       )}
       style={{
-        fontSize: size,
+        fontSize: `clamp(${Math.round(size * 0.35)}px, 38vw, ${size}px)`,
         lineHeight: 0.8,
         letterSpacing: "-0.05em",
         ...pos,

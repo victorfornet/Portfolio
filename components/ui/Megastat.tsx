@@ -16,7 +16,7 @@ export function Megastat({
     <div className={cn("flex flex-col gap-1", className)}>
       <div
         className={cn(
-          "font-serif text-[64px] italic font-normal leading-none -tracking-[0.02em] tabular-nums",
+          "font-serif text-[40px] italic font-normal leading-none -tracking-[0.02em] tabular-nums md:text-[52px] lg:text-[64px]",
           dark ? "text-white" : "text-slate-900",
         )}
       >
@@ -24,7 +24,7 @@ export function Megastat({
       </div>
       <div
         className={cn(
-          "font-mono text-[10.5px] uppercase tracking-[0.12em]",
+          "font-mono text-[10px] uppercase tracking-[0.12em] md:text-[10.5px]",
           dark ? "text-white/60" : "text-slate-500",
         )}
       >

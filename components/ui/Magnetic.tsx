@@ -6,6 +6,7 @@ import {
   useReducedMotion,
   useSpring,
 } from "framer-motion";
+import { useFinePointer } from "@/lib/use-fine-pointer";
 
 const SPRING_CONFIG = { damping: 100, stiffness: 400 };
 
@@ -21,13 +22,14 @@ export function Magnetic({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
+  const fine = useFinePointer();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, SPRING_CONFIG);
   const springY = useSpring(y, SPRING_CONFIG);
 
   useEffect(() => {
-    if (reduced) return;
+    if (reduced || !fine) return;
     const node = ref.current;
     if (!node) return;
 
@@ -70,9 +72,9 @@ export function Magnetic({
       node.removeEventListener("pointermove", handleMove);
       if (rafId !== null) cancelAnimationFrame(rafId);
     };
-  }, [distance, reduced, x, y]);
+  }, [distance, reduced, fine, x, y]);
 
-  if (reduced) {
+  if (reduced || !fine) {
     return <div className={className}>{children}</div>;
   }
 

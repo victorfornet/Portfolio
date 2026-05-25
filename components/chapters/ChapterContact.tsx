@@ -11,7 +11,7 @@ export function ChapterContact() {
   return (
     <section
       id="contact"
-      className="relative isolate flex min-h-screen items-center overflow-hidden bg-slate-950 px-6 py-32 text-white md:px-10"
+      className="relative isolate flex min-h-dvh items-center overflow-hidden bg-slate-950 px-5 py-24 text-white md:px-10 md:py-32"
     >
       <Boxes />
 
@@ -20,21 +20,21 @@ export function ChapterContact() {
           <SceneIllustration
             src="/pixel/contact.png"
             alt="Pixel-art golden-hour scene with a blond character waving toward the horizon."
-            className="mx-auto max-w-3xl"
+            className="mx-auto max-w-[280px] md:max-w-md lg:max-w-3xl"
           />
         </Reveal>
         <Reveal delay={0.1}>
-          <div className="mx-auto mt-10 max-w-2xl text-center">
-            <p className="font-mono text-xs uppercase tracking-wider text-white/60">
+          <div className="mx-auto mt-8 max-w-2xl text-center md:mt-10">
+            <p className="font-mono text-[10px] uppercase tracking-wider text-white/60 md:text-xs">
               {c.label}
             </p>
-            <h2 className="mt-2 text-balance text-4xl font-semibold md:text-6xl">
+            <h2 className="mt-2 text-balance text-3xl font-semibold md:text-5xl lg:text-6xl">
               {c.title}
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-white/80">
+            <p className="mx-auto mt-5 max-w-xl text-sm text-white/80 md:mt-6 md:text-base">
               Building consumer, AI, or anything ambitious? Reach out.
             </p>
-            <div className="pointer-events-auto mt-10 flex flex-wrap justify-center gap-3">
+            <div className="pointer-events-auto mt-8 flex flex-wrap justify-center gap-3 md:mt-10">
               <Magnetic>
                 <EmailCopy email="victor.fornet@hec.edu" />
               </Magnetic>
@@ -58,7 +58,7 @@ export function ChapterContact() {
           </div>
         </Reveal>
       </div>
-      <footer className="pointer-events-none absolute inset-x-0 bottom-6 z-20 text-center font-mono text-xs text-white/50">
+      <footer className="pointer-events-none absolute inset-x-0 bottom-4 z-20 px-4 text-center font-mono text-[10px] text-white/50 md:bottom-6 md:text-xs">
         Made by Victor Fornet · 2026 · pixel-art with care
       </footer>
     </section>

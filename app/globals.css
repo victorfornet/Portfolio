@@ -46,5 +46,14 @@ html.has-custom-cursor, html.has-custom-cursor * { cursor: none !important; }
 }
 
 /* Sky color is a fallback while the pixel scene loads. */
-html { background: var(--color-sky-50); color: #0c1726; }
-body { background: transparent; }
+html {
+  background: var(--color-sky-50);
+  color: #0c1726;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+body {
+  background: transparent;
+  overflow-x: hidden;
+}

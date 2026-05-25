@@ -20,13 +20,13 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative isolate flex min-h-screen items-center justify-center px-6 py-32 md:px-10"
+      className="relative isolate flex min-h-dvh items-center justify-center px-4 py-20 md:px-10 md:py-32"
     >
-      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-8 rounded-3xl bg-white/55 px-8 py-12 text-center backdrop-blur-md ring-1 ring-black/5 shadow-[0_30px_80px_-30px_rgba(15,40,80,0.45)] md:px-16 md:py-16">
-        <span className="text-sm font-medium uppercase tracking-[0.2em] text-slate-600 md:text-base">
+      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-6 rounded-3xl bg-white/55 px-5 py-10 text-center backdrop-blur-md ring-1 ring-black/5 shadow-[0_30px_80px_-30px_rgba(15,40,80,0.45)] md:gap-8 md:px-16 md:py-16">
+        <span className="text-xs font-medium uppercase tracking-[0.2em] text-slate-600 md:text-base">
           Victor Fornet
         </span>
-        <h1 className="w-full text-balance text-5xl font-semibold leading-[1.05] tracking-tight text-slate-900 md:text-7xl">
+        <h1 className="w-full text-balance text-[36px] font-semibold leading-[1.05] tracking-tight text-slate-900 md:text-7xl">
           <span className="block">I ship</span>
           <span className="relative flex w-full justify-center overflow-y-hidden md:pb-4 md:pt-1">
             &nbsp;
@@ -49,7 +49,7 @@ export function Hero() {
           <span className="block">products.</span>
         </h1>
 
-        <p className="max-w-xl text-base text-slate-800 md:text-lg">
+        <p className="max-w-xl text-sm text-slate-800 md:text-lg">
           Product Manager at Rocapine. Building Vibo on the side. HEC Paris.
           Relocating to San Francisco.
         </p>

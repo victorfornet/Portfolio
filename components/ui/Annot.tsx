@@ -17,14 +17,14 @@ export function Annot({
   return (
     <div
       className={cn(
-        "grid grid-cols-[60px_1fr] gap-4 border-t pt-3.5",
+        "grid grid-cols-[44px_1fr] gap-3 border-t pt-3.5 md:grid-cols-[60px_1fr] md:gap-4",
         dark ? "border-white/15" : "border-slate-300/60",
         className,
       )}
     >
       <div
         className={cn(
-          "font-serif text-[30px] italic leading-none -tracking-[0.02em]",
+          "font-serif text-[24px] italic leading-none -tracking-[0.02em] md:text-[28px] lg:text-[30px]",
           dark ? "text-sky-300" : "text-sky-700",
         )}
       >

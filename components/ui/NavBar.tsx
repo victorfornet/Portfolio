@@ -91,8 +91,10 @@ export function NavBar() {
                 href={`#${c.id}`}
                 onClick={(e) => handleClick(e, c.id)}
                 className={cn(
-                  "block rounded-full px-3 py-1.5 text-xs font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400",
-                  isActive ? "bg-white text-slate-900" : "text-white/80 hover:text-white",
+                  "block whitespace-nowrap rounded-full px-3 py-2 text-[13px] font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400 md:py-1.5 md:text-xs",
+                  isActive
+                    ? "bg-white text-slate-900"
+                    : "text-white/80 [@media(hover:hover)]:hover:text-white",
                 )}
               >
                 <ScrambleText text={c.navLabel} />

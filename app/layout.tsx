@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import {
   Inter_Tight,
   JetBrains_Mono,
@@ -33,10 +33,17 @@ export const metadata: Metadata = {
     "Product Manager at Rocapine ($5.6M ARR, 315K MAU). Building Vibo. HEC Paris. Relocating to San Francisco. Open to founder collabs and pre-seed product roles.",
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#eaf6ff",
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable} ${serif.variable} ${pixel.variable}`}>
-      <body className="font-sans antialiased">
+      <body className="min-h-dvh font-sans antialiased">
         <SmoothScrollProvider>
           <CinematicBackground />
           <NavBar />

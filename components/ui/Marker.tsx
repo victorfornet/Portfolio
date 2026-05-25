@@ -21,7 +21,7 @@ export function Marker({
     >
       <span
         className={cn(
-          "font-serif text-[42px] italic leading-none -tracking-[0.02em]",
+          "font-serif text-[32px] italic leading-none -tracking-[0.02em] md:text-[36px] lg:text-[42px]",
           dark ? "text-white" : "text-slate-900",
         )}
       >
