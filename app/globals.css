@@ -51,9 +51,12 @@ html {
   color: #0c1726;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  overflow-x: hidden;
+  /* `clip` (not `hidden`) prevents a stray horizontal scrollbar WITHOUT
+     turning html/body into a scroll container — which would break the
+     `position: sticky` pinning used by the desktop horizontal chapter track. */
+  overflow-x: clip;
 }
 body {
   background: transparent;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
