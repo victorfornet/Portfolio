@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Victor Fornet — Portfolio
 
-## Getting Started
+A narrative, scroll-driven personal portfolio that tells my story as a series of cinematic chapters — from HEC Paris, through consulting at BearingPoint, to building consumer products at Rocapine and beyond.
 
-First, run the development server:
+**🔗 Live site: [victorfornet.com](https://victorfornet.com)**
+
+---
+
+## Overview
+
+The site is built as a single, continuous storyline. Each chapter is a self-contained scene with its own pixel-art illustration, editorial layout, and motion design:
+
+| # | Chapter | About |
+|---|---------|-------|
+| 0 | **Hero** | I ship consumer products. |
+| I | **Foundation** | HEC Paris |
+| II | **Corporate Lab** | BearingPoint |
+| III | **Builder Studio** | Rocapine |
+| IV | **Shipping** | Side projects |
+| V | **About me** | Who I am |
+| VI | **What's next** | Where I'm headed |
+| — | **Contact** | Get in touch |
+
+The desktop experience features a horizontally-scrolling chapter track pinned to the viewport, smooth inertial scrolling, parallax illustrations, and scroll-progress-driven reveals. The layout is fully responsive with a mobile-first vertical flow.
+
+## Tech stack
+
+- **[Next.js 16](https://nextjs.org)** (App Router) + **React 19**
+- **[Tailwind CSS 4](https://tailwindcss.com)** for styling
+- **[Framer Motion 12](https://www.framer.com/motion/)** for animation & micro-interactions
+- **[Lenis](https://lenis.darkroom.engineering/)** for smooth scrolling
+- **TypeScript** throughout
+- **[Vitest](https://vitest.dev)** + **[Testing Library](https://testing-library.com/)** for unit tests, **[Playwright](https://playwright.dev)** for end-to-end tests
+- Deployed on **[Vercel](https://vercel.com)**
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view it.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Description |
+|---------|-------------|
+| `pnpm dev` | Start the development server |
+| `pnpm build` | Build for production |
+| `pnpm start` | Run the production build |
+| `pnpm lint` | Lint with ESLint |
+| `pnpm typecheck` | Type-check with `tsc` |
+| `pnpm test` | Run unit tests (Vitest) |
+| `pnpm test:e2e` | Run end-to-end tests (Playwright) |
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/                 App Router entry, layout, global styles, OG image
+components/
+  chapters/          One component per story chapter
+  motion/            Scroll scenes, parallax, smooth-scroll provider
+  scene/             Cinematic background
+  ui/                Reusable UI primitives (cursor, cards, CTA…)
+content/             Chapter & project data
+lib/                 Hooks and helpers (scroll math, active chapter…)
+public/pixel/        Pixel-art chapter illustrations
+tests/               Unit + e2e tests
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contact
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Reach me at **victor.fornet@hec.edu** or via the contact section on [victorfornet.com](https://victorfornet.com).
