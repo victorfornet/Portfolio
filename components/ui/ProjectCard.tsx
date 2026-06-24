@@ -114,7 +114,7 @@ export function ProjectCard({
         </div>
 
         <div className="space-y-2">
-          <div className="flex items-baseline justify-between gap-3">
+          <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
             <h3 className="text-[15px] font-medium tracking-tight text-white">
               {project.name}
             </h3>
