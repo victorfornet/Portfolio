@@ -21,6 +21,10 @@ export const PROJECTS: Project[] = [
     stack: ["React Native", "Expo", "TypeScript"],
     approach:
       "Solo build: product, UX, stack (Cursor + Claude Code), GTM, distribution.",
+    link: {
+      label: "Open Vibo",
+      href: "https://vibo-web.vercel.app/",
+    },
   },
   {
     id: "arctic",
