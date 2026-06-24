@@ -86,7 +86,7 @@ export function ChapterShipping() {
 
         <motion.div
           style={staticView ? undefined : { opacity: cardOpacity, y: cardY }}
-          className="flex flex-col gap-4 lg:h-full lg:min-h-0 lg:grid lg:grid-rows-3"
+          className="flex flex-col gap-4 lg:h-full lg:min-h-0 lg:overflow-y-auto lg:pr-1"
         >
           {PROJECTS.map((p) => (
             <ProjectCard key={p.id} project={p} />
