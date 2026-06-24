@@ -76,9 +76,7 @@ export function ProjectCard({
     };
   }, [tilt, mx, my]);
 
-  const hasDetails = Boolean(
-    project.problem || project.approach || project.link,
-  );
+  const hasDetails = Boolean(project.problem || project.approach);
 
   return (
     <motion.article
@@ -116,9 +114,21 @@ export function ProjectCard({
         </div>
 
         <div className="space-y-2">
-          <h3 className="text-[15px] font-medium tracking-tight text-white">
-            {project.name}
-          </h3>
+          <div className="flex items-baseline justify-between gap-3">
+            <h3 className="text-[15px] font-medium tracking-tight text-white">
+              {project.name}
+            </h3>
+            {project.link && (
+              <a
+                href={project.link.href}
+                target="_blank"
+                rel="noreferrer"
+                className="shrink-0 text-xs font-semibold text-sky-400 underline-offset-4 hover:underline"
+              >
+                {project.link.label} ↗
+              </a>
+            )}
+          </div>
           <p className="text-sm font-[425] leading-snug text-white/70">
             {project.summary}
           </p>
@@ -148,16 +158,6 @@ export function ProjectCard({
               <p>
                 <strong>Approach.</strong> {project.approach}
               </p>
-            )}
-            {project.link && (
-              <a
-                href={project.link.href}
-                target="_blank"
-                rel="noreferrer"
-                className="self-start font-semibold text-sky-400 underline-offset-4 hover:underline"
-              >
-                {project.link.label} ↗
-              </a>
             )}
           </div>
         )}
